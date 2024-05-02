@@ -1,8 +1,8 @@
 import { TRPCError } from "@trpc/server";
-import { hashPassword, lucia, verifyPassword } from "@packages/auth";
+import { hashPassword } from "@packages/auth";
 import { UserSchema, db } from "@packages/db";
 import { z } from "zod";
-import { protectedProcedure, publicProcedure } from "../../trpc/base";
+import { protectedProcedure } from "../../trpc/base";
 
 export const login = protectedProcedure
   .input(
