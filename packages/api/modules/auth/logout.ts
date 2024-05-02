@@ -10,11 +10,11 @@ export const logout = protectedProcedure
       await lucia.invalidateSession(session.id);
       const sessionCookie = lucia.createBlankSessionCookie();
       responseHeaders?.append("Set-Cookie", sessionCookie.serialize());
-    } catch (e) {
-      console.error(e);
+    } catch (error: any) {
+      console.error(error);
       throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: "An unknown error occurred.",
+        code: error.code || "INTERNAL_SERVER_ERROR",
+        message: error.message || "An unknown error occurred.",
       });
     }
   });

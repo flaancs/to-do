@@ -53,11 +53,11 @@ export const signup = publicProcedure
         return {
           user,
         };
-      } catch (e) {
-        console.error(e);
+      } catch (error: any) {
+        console.error(error);
         throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "An unknown error occurred.",
+          code: error.code || "INTERNAL_SERVER_ERROR",
+          message: error.message || "An unknown error occurred.",
         });
       }
     },

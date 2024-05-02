@@ -1,4 +1,3 @@
-import { UserContextProvider } from "@/context/user-context";
 import { userRedirect } from "@/lib/redirect";
 import { PropsWithChildren } from "react";
 

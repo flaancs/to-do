@@ -30,34 +30,42 @@ export const login = publicProcedure
   )
   .mutation(
     async ({ input: { email, password }, ctx: { responseHeaders } }) => {
-      const user = await db.user.findFirst({
-        where: {
-          email,
-        },
-      });
-
-      if (!user || !user.hashedPassword)
-        throw new TRPCError({
-          code: "NOT_FOUND",
+      try {
+        const user = await db.user.findFirst({
+          where: {
+            email,
+          },
         });
 
-      const isValidPassword = await verifyPassword(
-        user.hashedPassword,
-        password,
-      );
+        if (!user || !user.hashedPassword)
+          throw new TRPCError({
+            code: "NOT_FOUND",
+          });
 
-      if (!isValidPassword)
+        const isValidPassword = await verifyPassword(
+          user.hashedPassword,
+          password,
+        );
+
+        if (!isValidPassword)
+          throw new TRPCError({
+            code: "NOT_FOUND",
+          });
+
+        const session = await lucia.createSession(user.id, {});
+
+        const sessionCookie = lucia.createSessionCookie(session.id);
+        responseHeaders?.append("Set-Cookie", sessionCookie.serialize());
+
+        return {
+          user,
+        };
+      } catch (error: any) {
+        console.error(error);
         throw new TRPCError({
-          code: "NOT_FOUND",
+          code: error.code || "INTERNAL_SERVER_ERROR",
+          message: error.message || "An unknown error occurred.",
         });
-
-      const session = await lucia.createSession(user.id, {});
-
-      const sessionCookie = lucia.createSessionCookie(session.id);
-      responseHeaders?.append("Set-Cookie", sessionCookie.serialize());
-
-      return {
-        user,
-      };
+      }
     },
   );
