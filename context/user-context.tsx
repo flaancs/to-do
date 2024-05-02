@@ -3,9 +3,15 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { getQueryKey } from "@trpc/react-query";
 import { useRouter } from "next/navigation";
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
-import { ApiOutput } from "../packages/api/trpc/router";
-import { apiClient } from "../packages/api";
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { ApiOutput } from "@packages/api";
+import { apiClient } from "@lib/api-client";
 
 type User = ApiOutput["auth"]["user"];
 
@@ -58,7 +64,7 @@ export function UserContextProvider({
       type: "logout",
       user: null,
     } satisfies AuthEvent);
-    router.replace("/");
+    router.replace("/auth/login");
   };
 
   useEffect(() => {
@@ -109,4 +115,9 @@ export function UserContextProvider({
       {children}
     </userContext.Provider>
   );
+}
+
+export function useUser() {
+  const context = useContext(userContext);
+  return context;
 }

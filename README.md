@@ -58,9 +58,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Shadcn next-themes Documentation](https://ui.shadcn.com/docs/dark-mode/next).
 - [Prisma documentation](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql).
 - [Zod prisma types](https://www.npmjs.com/package/zod-prisma-types#zod-prisma-types-).
-- [dotenv-cli](https://www.npmjs.com/package/dotenv-cli)
+- [Dotenv-cli](https://www.npmjs.com/package/dotenv-cli)
 - [Lucia auth](https://lucia-auth.com/)
 - [TRPC](https://trpc.io/docs/client/nextjs/setup)
 - [Oslo](https://oslo.js.org/)
 - [Argon2](https://www.npmjs.com/package/@node-rs/argon2)
 - [Bcrypt](https://www.npmjs.com/package/@node-rs/bcrypt)
+- [Lucide icons](https://lucide.dev/guide/packages/lucide-react)
+- [Usehooks-ts](https://usehooks-ts.com/introduction)
+- [Nextjs TopLoader](https://www.npmjs.com/package/nextjs-toploader)

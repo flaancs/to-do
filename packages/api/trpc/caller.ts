@@ -4,5 +4,6 @@ import { apiRouter } from "./router";
 
 export const createApiCaller = async () => {
   const createCaller = t.createCallerFactory(apiRouter);
-  return createCaller(await createContext());
+  const context = await createContext();
+  return createCaller(context);
 };

@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { hashPassword, lucia } from "@packages/auth";
 import { UserSchema, db } from "@packages/db";
 import { z } from "zod";
-import { publicProcedure } from "@packages/api";
+import { publicProcedure } from "../../trpc/base";
 
 export const signup = publicProcedure
   .input(

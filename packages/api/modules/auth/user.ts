@@ -1,4 +1,4 @@
-import { UserSchema, db } from "@packages/db";
+import { UserSchema } from "@packages/db";
 import { z } from "zod";
 import { publicProcedure } from "../../trpc/base";
 
