@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "prisma generate && next dev",
-    "build": "next build",
+    "dev": "dotenv -c -- prisma generate && next dev",
+    "build": "dotenv -c -- next build",
     "start": "next start",
     "test": "next test",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "shadcn": "npx shadcn-ui@latest add",
     "generate": "prisma generate",
-    "studio": "prisma studio",
-    "push": "prisma db push",
+    "studio": "dotenv -c -- prisma studio",
+    "push": "dotenv -c -- prisma db push",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "@types/node": "^20.12.8",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv-cli": "^7.4.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
