@@ -21,15 +21,18 @@ export function Task({ task }: TaskProps) {
       <Checkbox id={task.id} checked={task.completed} />
       <div className="flex w-full flex-col gap-1">
         {task.dueDate && (
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">
               {moment(task.dueDate).format("MMM D, YYYY")}
             </span>
             <span
-              className={cn("text-xs px-2 py-0.5 rounded-full border", {
-                "text-muted-foreground bg-slate-200 dark:bg-slate-700/50 border-slate-400 dark:border-slate-500": !isDueToday && !isOverdue,
-                "text-yellow-600 bg-yellow-100 dark:bg-yellow-700/50 border-yellow-500": isDueToday,
-                "text-red-600 bg-red-100 dark:bg-red-900/50 border-red-500": isOverdue,
+              className={cn("rounded-full border px-2 py-0.5 text-xs", {
+                "border-slate-400 bg-slate-200 text-muted-foreground dark:border-slate-500 dark:bg-slate-700/50":
+                  !isDueToday && !isOverdue,
+                "border-yellow-500 bg-yellow-100 text-yellow-600 dark:bg-yellow-700/50":
+                  isDueToday,
+                "border-red-500 bg-red-100 text-red-600 dark:bg-red-900/50":
+                  isOverdue,
               })}
             >
               {isOverdue
