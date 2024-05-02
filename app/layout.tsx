@@ -36,6 +36,7 @@ export default async function RootLayout({
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
         )}
+        suppressHydrationWarning
       >
         <NextTopLoader />
         <ApiClientProvider>
@@ -48,7 +49,9 @@ export default async function RootLayout({
                   <ThemeToggle />
                 </div>
               </nav>
-              {children}
+              <main className="mx-auto flex min-h-screen flex-col justify-center">
+                {children}
+              </main>
             </ThemeProvider>
           </UserContextProvider>
         </ApiClientProvider>
