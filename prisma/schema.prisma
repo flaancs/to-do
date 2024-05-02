@@ -17,15 +17,15 @@ datasource db {
 }
 
 model User {
-  id             String        @id @default(cuid())
-  email          String        @unique
-  emailVerified  Boolean       @default(false)
-  name           String
-  avatarUrl      String?
-  hashedPassword String
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  Sessions       UserSession[]
+  id                String             @id @default(cuid())
+  email             String             @unique
+  name              String
+  avatarUrl         String?
+  hashedPassword    String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  Sessions          UserSession[]
+  UserOauthAccounts UserOauthAccount[]
 }
 
 model UserSession {
@@ -35,4 +35,14 @@ model UserSession {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+model UserOauthAccount {
+  id             String @id @default(cuid())
+  providerId     String
+  providerUserId String
+  userId         String
+  user           User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, providerUserId])
 }

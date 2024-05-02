@@ -1,9 +1,9 @@
 import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { router } from "./base";
-import * as authProcedures from "./procedures/auth";
+import * as authProcedures from "../modules/auth";
 
 export const apiRouter = router({
-    auth: router(authProcedures),
+  auth: router(authProcedures),
 });
 
 export type ApiRouter = typeof apiRouter;

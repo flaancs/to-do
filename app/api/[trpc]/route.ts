@@ -1,4 +1,4 @@
-import { trpcApiRouteHandler } from "@packages/trpc";
+import { trpcApiRouteHandler } from "@packages/api";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

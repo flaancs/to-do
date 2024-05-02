@@ -32,7 +32,6 @@ export const lucia = new Lucia(adapter, {
     return {
       id: data.id,
       email: data.email,
-      emailVerified: data.emailVerified,
       name: data.name,
       avatarUrl: data.avatarUrl,
       createdAt: data.createdAt,

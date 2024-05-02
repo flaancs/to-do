@@ -61,4 +61,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [dotenv-cli](https://www.npmjs.com/package/dotenv-cli)
 - [Lucia auth](https://lucia-auth.com/)
 - [TRPC](https://trpc.io/docs/client/nextjs/setup)
-- [Oslo](https://oslo.js.org/reference/main/)
+- [Oslo](https://oslo.js.org/)
+- [Argon2](https://www.npmjs.com/package/@node-rs/argon2)
+- [Bcrypt](https://www.npmjs.com/package/@node-rs/bcrypt)

@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { hashPassword, lucia } from "@packages/auth";
 import { UserSchema, db } from "@packages/db";
 import { z } from "zod";
-import { publicProcedure } from "@packages/trpc";
+import { publicProcedure } from "@packages/api";
 
 export const signup = publicProcedure
   .input(
@@ -24,16 +24,11 @@ export const signup = publicProcedure
         email: true,
         name: true,
         avatarUrl: true,
-      }).partial({
-        avatarUrl: true,
       }),
     }),
   )
   .mutation(
-    async ({
-      input: { email, password, name },
-      ctx: {responseHeaders}
-    }) => {
+    async ({ input: { email, password, name }, ctx: { responseHeaders } }) => {
       try {
         const hashedPassword = await hashPassword(password);
         const user = await db.user.create({
@@ -47,14 +42,14 @@ export const signup = publicProcedure
             email: true,
             name: true,
             avatarUrl: true,
-          }
+          },
         });
 
         const session = await lucia.createSession(user.id, {});
 
         const sessionCookie = lucia.createSessionCookie(session.id);
         responseHeaders?.append("Set-Cookie", sessionCookie.serialize());
-  
+
         return {
           user,
         };
