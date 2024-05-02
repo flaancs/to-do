@@ -20,8 +20,6 @@ export const UserOauthAccountScalarFieldEnumSchema = z.enum(['id','providerId','
 
 export const TaskScalarFieldEnumSchema = z.enum(['id','title','dueDate','completed','color','userId','createdAt','updatedAt']);
 
-export const SubTaskScalarFieldEnumSchema = z.enum(['id','title','completed','taskId','createdAt','updatedAt']);
-
 export const SortOrderSchema = z.enum(['asc','desc']);
 
 export const QueryModeSchema = z.enum(['default','insensitive']);
@@ -83,7 +81,7 @@ export type UserOauthAccount = z.infer<typeof UserOauthAccountSchema>
 export const TaskSchema = z.object({
   id: z.string().cuid(),
   title: z.string(),
-  dueDate: z.coerce.date(),
+  dueDate: z.coerce.date().nullable(),
   completed: z.boolean(),
   color: z.string(),
   userId: z.string(),
@@ -92,18 +90,3 @@ export const TaskSchema = z.object({
 })
 
 export type Task = z.infer<typeof TaskSchema>
-
-/////////////////////////////////////////
-// SUB TASK SCHEMA
-/////////////////////////////////////////
-
-export const SubTaskSchema = z.object({
-  id: z.string().cuid(),
-  title: z.string(),
-  completed: z.boolean(),
-  taskId: z.string(),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
-})
-
-export type SubTask = z.infer<typeof SubTaskSchema>

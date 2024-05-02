@@ -10,6 +10,8 @@ import { createApiCaller } from "@/packages/api";
 import { UserMenu } from "@/components/ui/user-menu";
 import { UserContextProvider } from "@/context/user-context";
 import NextTopLoader from "nextjs-toploader";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ClientProviders } from "@/components/providers/client-providers";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -36,25 +38,20 @@ export default async function RootLayout({
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
         )}
-        suppressHydrationWarning
       >
         <NextTopLoader />
-        <ApiClientProvider>
-          <UserContextProvider initialUser={user}>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <nav className="absolute left-0 top-0 flex w-full justify-between px-8 py-4">
-                <Logo />
-                <div className="flex items-center gap-4">
-                  <UserMenu />
-                  <ThemeToggle />
-                </div>
-              </nav>
-              <main className="mx-auto flex min-h-screen flex-col justify-center">
-                {children}
-              </main>
-            </ThemeProvider>
-          </UserContextProvider>
-        </ApiClientProvider>
+        <ClientProviders user={user}>
+          <nav className="absolute left-0 top-0 flex w-full justify-between px-8 py-4">
+            <Logo />
+            <div className="flex items-center gap-4">
+              <UserMenu />
+              <ThemeToggle />
+            </div>
+          </nav>
+          <main className="mx-auto flex min-h-screen flex-col justify-center">
+            {children}
+          </main>
+        </ClientProviders>
       </body>
     </html>
   );
