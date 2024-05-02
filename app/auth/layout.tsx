@@ -8,9 +8,5 @@ export default async function AuthLayout({ children }: PropsWithChildren<{}>) {
     location: "/list",
   });
 
-  return (
-    <div className="mx-auto flex min-h-screen flex-col justify-center">
-      <UserContextProvider initialUser={null}>{children}</UserContextProvider>
-    </div>
-  );
+  return children;
 }
