@@ -27,9 +27,30 @@ pnpm dev
 pnpm test
 ```
 
+## Managing the database
+#### Generate schema
+```bash
+pnpm generate
+```
+
+#### Push schema
+```bash
+pnpm push
+```
+
+### Database studio
+```bash
+pnpm studio
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## References
 
-- [How to install NVM](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide)
+- [Karma commit message](https://karma-runner.github.io/6.4/dev/git-commit-msg.html).
+- [How to install NVM](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide).
 - [Next.js Documentation](https://nextjs.org/docs).
+- [Shadcn Documentation](https://ui.shadcn.com/docs).
+- [Shadcn next-themes Documentation](https://ui.shadcn.com/docs/dark-mode/next).
+- [Prisma documentation](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql).
+- [Zod prisma types](https://www.npmjs.com/package/zod-prisma-types#zod-prisma-types-).
