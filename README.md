@@ -28,17 +28,21 @@ pnpm test
 ```
 
 ## Managing the database
+
 #### Generate schema
+
 ```bash
 pnpm generate
 ```
 
 #### Push schema
+
 ```bash
 pnpm push
 ```
 
 ### Database studio
+
 ```bash
 pnpm studio
 ```
@@ -54,3 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Shadcn next-themes Documentation](https://ui.shadcn.com/docs/dark-mode/next).
 - [Prisma documentation](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql).
 - [Zod prisma types](https://www.npmjs.com/package/zod-prisma-types#zod-prisma-types-).
+- [dotenv-cli](https://www.npmjs.com/package/dotenv-cli)
+- [Lucia auth](https://lucia-auth.com/)
+- [TRPC](https://trpc.io/docs/client/nextjs/setup)
+- [Oslo](https://oslo.js.org/reference/main/)

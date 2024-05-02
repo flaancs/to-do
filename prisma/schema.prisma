@@ -17,12 +17,22 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(cuid())
-  email          String   @unique
-  emailVerified  Boolean  @default(false)
+  id             String        @id @default(cuid())
+  email          String        @unique
+  emailVerified  Boolean       @default(false)
   name           String
-  avatarUrl      String
+  avatarUrl      String?
   hashedPassword String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  Sessions       UserSession[]
+}
+
+model UserSession {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
