@@ -7,7 +7,7 @@ export default function List() {
     data: tasks,
     refetch: refetchTasks,
     isLoading: isLoadingTasks,
-  } = apiClient.tasks.get.useQuery();
+  } = apiClient.tasks.findAll.useQuery();
 
   return (
     <div className="mx-auto w-full max-w-sm space-y-6">

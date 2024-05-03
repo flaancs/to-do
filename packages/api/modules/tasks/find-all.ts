@@ -3,9 +3,9 @@ import { TaskSchema, db } from "@packages/db";
 import { z } from "zod";
 import { protectedProcedure } from "../../trpc/base";
 
-export const get = protectedProcedure
+export const findAll = protectedProcedure
   .output(z.array(TaskSchema))
-  .mutation(async ({ ctx: { user } }) => {
+  .query(async ({ ctx: { user } }) => {
     try {
       const tasks = await db.task.findMany({
         where: {
@@ -13,7 +13,6 @@ export const get = protectedProcedure
         },
         orderBy: {
           createdAt: "desc",
-          completed: "asc",
         },
       });
       return tasks;

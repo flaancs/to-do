@@ -7,17 +7,15 @@ export const create = protectedProcedure
   .input(
     z.object({
       title: z.string(),
-      color: z.string(),
       dueDate: z.date().optional(),
     }),
   )
   .output(TaskSchema)
-  .mutation(async ({ input: { title, color, dueDate }, ctx: { user } }) => {
+  .mutation(async ({ input: { title, dueDate }, ctx: { user } }) => {
     try {
       const createdTask = await db.task.create({
         data: {
           title,
-          color,
           dueDate,
           userId: user.id,
           completed: false,

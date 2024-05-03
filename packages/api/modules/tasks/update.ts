@@ -9,16 +9,12 @@ export const update = protectedProcedure
       id: z.string(),
       title: z.string().optional(),
       completed: z.boolean().optional(),
-      color: z.string().optional(),
-      dueDate: z.date().optional(),
+      dueDate: z.date().nullable().optional(),
     }),
   )
   .output(TaskSchema)
   .mutation(
-    async ({
-      input: { id, title, completed, color, dueDate },
-      ctx: { user },
-    }) => {
+    async ({ input: { id, title, completed, dueDate }, ctx: { user } }) => {
       try {
         const task = await db.task.findFirst({
           where: {
@@ -47,7 +43,6 @@ export const update = protectedProcedure
           data: {
             title,
             completed,
-            color,
             dueDate,
           },
         });
