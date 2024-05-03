@@ -1,16 +1,12 @@
 import { Inter as FontSans } from "next/font/google";
-import { ThemeProvider } from "next-themes";
 import { cn } from "@lib/utils";
-import { ApiClientProvider } from "@/components/providers/api-client";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { Logo } from "@/components/ui/logo";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { Logo } from "@/components/shared/logo";
 import type { Metadata } from "next";
 import "./globals.css";
 import { createApiCaller } from "@/packages/api";
-import { UserMenu } from "@/components/ui/user-menu";
-import { UserContextProvider } from "@/context/user-context";
+import { UserMenu } from "@/components/shared/user-menu";
 import NextTopLoader from "nextjs-toploader";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { ClientProviders } from "@/components/providers/client-providers";
 import Link from "next/link";
 
@@ -37,7 +33,7 @@ export default async function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
         <NextTopLoader />
