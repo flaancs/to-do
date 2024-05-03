@@ -1,7 +1,7 @@
 import { useToast } from "@/components/ui/use-toast";
 import { Task } from "@lib/types";
 import { apiClient } from "@lib/api-client";
-import { ChangeEvent, useCallback, useMemo } from "react";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { debounce } from "lodash";
 import moment from "moment";
 
@@ -12,6 +12,8 @@ export interface useTaskCardProps {
 
 export const useTaskCard = ({ task, onUpdated }: useTaskCardProps) => {
   const { toast } = useToast();
+  const [calendarPopoverOpen, setCalendarPopoverOpen] = useState(false);
+
   const utils = apiClient.useUtils();
 
   const updateTaskMutation = apiClient.tasks.update.useMutation({
@@ -48,11 +50,6 @@ export const useTaskCard = ({ task, onUpdated }: useTaskCardProps) => {
     [updateTaskMutation.isPending],
   );
 
-  const humanizedDueDate = useMemo(
-    () => moment(task.dueDate).fromNow(),
-    [task.dueDate],
-  );
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleDebouncedChangeTitle = useCallback(
     debounce((event: ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +77,8 @@ export const useTaskCard = ({ task, onUpdated }: useTaskCardProps) => {
 
   return {
     isLoadingUpdate,
-    humanizedDueDate,
+    calendarPopoverOpen,
+    setCalendarPopoverOpen,
     handleUpdateTask,
     handleDebouncedChangeTitle,
   };

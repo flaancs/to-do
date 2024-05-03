@@ -7,8 +7,6 @@ import { Input } from "../ui/input";
 import { Popover } from "@radix-ui/react-popover";
 import { PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Calendar } from "../ui/calendar";
-import { Form, Formik } from "formik";
-import { FieldError } from "../shared/field-error";
 import { cn } from "@lib/utils";
 import { useTaskCard } from "@/hooks/task/use-task-card";
 import { TrashIcon } from "lucide-react";
@@ -22,6 +20,8 @@ export interface TaskCardProps {
 export function TaskCard({ task, onDelete, onUpdated }: TaskCardProps) {
   const {
     isLoadingUpdate,
+    calendarPopoverOpen,
+    setCalendarPopoverOpen,
     handleUpdateTask,
     handleDebouncedChangeTitle,
   } = useTaskCard({ task, onUpdated });
@@ -56,7 +56,7 @@ export function TaskCard({ task, onDelete, onUpdated }: TaskCardProps) {
                       onChange={handleDebouncedChangeTitle}
                     />
                   </div>
-                <Popover>
+                <Popover open={calendarPopoverOpen} onOpenChange={setCalendarPopoverOpen}>
                     <PopoverTrigger asChild>
                       <Button
                         type="button"
@@ -65,6 +65,7 @@ export function TaskCard({ task, onDelete, onUpdated }: TaskCardProps) {
                         })}
                         variant="outline"
                         disabled={isLoadingUpdate || task.completed}
+                        onClick={() => setCalendarPopoverOpen(!calendarPopoverOpen)}
                         >
                         <span className="font-normal">
                           {task.dueDate
@@ -77,6 +78,7 @@ export function TaskCard({ task, onDelete, onUpdated }: TaskCardProps) {
                       <Calendar
                         selected={task.dueDate || undefined}
                         onDayClick={async (val) => {
+                          setCalendarPopoverOpen(false);
                           await handleUpdateTask({ dueDate: val });
                         }}
                         id="due-date"
