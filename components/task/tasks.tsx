@@ -12,10 +12,9 @@ import type { Tasks } from "@lib/types";
 export interface TaskProps {
   tasks: Tasks;
   isLoadingTasks: boolean;
-  onRefreshTasks: () => void;
 }
 
-export function Tasks({ tasks, isLoadingTasks, onRefreshTasks }: TaskProps) {
+export function Tasks({ tasks, isLoadingTasks }: TaskProps) {
   const {
     taskDialogOpen,
     setTaskDialogOpen,
@@ -25,7 +24,7 @@ export function Tasks({ tasks, isLoadingTasks, onRefreshTasks }: TaskProps) {
     handleOpenTaskDialog,
     handleDeleteTask,
     handleTaskCreatedOrUpdated,
-  } = useTasks({ onRefreshTasks });
+  } = useTasks();
 
   return (
     <>
@@ -47,24 +46,23 @@ export function Tasks({ tasks, isLoadingTasks, onRefreshTasks }: TaskProps) {
             <span>Add Task</span>
           </Button>
         </div>
+        <div className="h-96 space-y-2 overflow-y-scroll">
         {isLoadingTasks ? (
-          <div className="space-y-2">
+          <div className="space-y-6">
             <TaskCardSkeleton />
             <TaskCardSkeleton />
             <TaskCardSkeleton />
             <TaskCardSkeleton />
           </div>
         ) : tasks && tasks.length > 0 ? (
-          <div className="max-h-96 space-y-2 overflow-y-scroll">
-            {tasks.map((task) => (
+            tasks.map((task) => (
               <TaskCard
                 key={task.id}
                 task={task}
                 onDelete={handleOpenDeleteAlert}
                 onUpdated={handleTaskCreatedOrUpdated}
               />
-            ))}
-          </div>
+            ))
         ) : (
           <div className="flex flex-col items-center gap-4 rounded-md border py-4 text-muted-foreground">
             <InfoIcon size={32} />
@@ -77,6 +75,7 @@ export function Tasks({ tasks, isLoadingTasks, onRefreshTasks }: TaskProps) {
             </Button>
           </div>
         )}
+          </div>
       </div>
     </>
   );

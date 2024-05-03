@@ -1,19 +1,18 @@
+import { TrashIcon } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
 import { Skeleton } from "../ui/skeleton";
 
 export function TaskCardSkeleton() {
   return (
-    <Skeleton className="flex h-16 w-full items-center justify-between px-3">
-      <div className="flex items-center gap-2">
-        <Skeleton className="h-4 w-4" />
-        <div className="flex flex-col gap-1">
-          <Skeleton className="h-4 w-60" />
-          <Skeleton className="h-6 w-60" />
+      <div className="flex items-center gap-4 w-full animate-pulse">
+        <Checkbox disabled />
+        <div className="grid grid-cols-12 gap-4 w-full">
+          <Skeleton className="h-8 col-span-7" />
+          <Skeleton className="h-8 col-span-5" />
         </div>
+        <button disabled>
+            <TrashIcon className="w-4 h-4" />
+          </button>
       </div>
-      <div className="flex items-center gap-2">
-        <Skeleton className="h-6 w-6" />
-        <Skeleton className="h-6 w-6" />
-      </div>
-    </Skeleton>
   );
 }

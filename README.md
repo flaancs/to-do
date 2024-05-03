@@ -70,6 +70,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Moment](https://momentjs.com/)
 - [Zod formik adapter](https://www.npmjs.com/package/zod-formik-adapter)
 - [TanstackQuery Optimistic Updates](https://tanstack.com/query/v4/docs/framework/react/guides/optimistic-updates)
+- [Lodash](https://lodash.com/)
 
 ## Optimistic UI
 

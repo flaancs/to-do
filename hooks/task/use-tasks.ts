@@ -3,11 +3,7 @@ import { apiClient } from "@lib/api-client";
 import { useState } from "react";
 import type { Task } from "@lib/types";
 
-export interface useTasksProps {
-  onRefreshTasks: () => void;
-}
-
-export const useTasks = ({ onRefreshTasks }: useTasksProps) => {
+export const useTasks = () => {
   const { toast } = useToast();
   const [taskDialogOpen, setTaskDialogOpen] = useState(false);
   const [deleteTaskAlert, setDeleteTaskAlert] = useState(false);
@@ -20,7 +16,6 @@ export const useTasks = ({ onRefreshTasks }: useTasksProps) => {
         title: "Task deleted",
         description: "Task has been deleted successfully",
       });
-      onRefreshTasks();
     },
     onError: () => {
       toast({
@@ -57,7 +52,6 @@ export const useTasks = ({ onRefreshTasks }: useTasksProps) => {
 
   const handleTaskCreatedOrUpdated = () => {
     setTaskDialogOpen(false);
-    onRefreshTasks();
   };
 
   return {

@@ -5,7 +5,6 @@ import { apiClient } from "@lib/api-client";
 export default function List() {
   const {
     data: tasks,
-    refetch: refetchTasks,
     isLoading: isLoadingTasks,
   } = apiClient.tasks.findAll.useQuery();
 
@@ -13,7 +12,6 @@ export default function List() {
     <div className="mx-auto w-full max-w-sm space-y-6">
       <Tasks
         tasks={tasks}
-        onRefreshTasks={refetchTasks}
         isLoadingTasks={isLoadingTasks}
       />
     </div>
