@@ -36,12 +36,21 @@ export const useTaskDialog = ({
   const utils = apiClient.useUtils();
 
   const createTaskMutation = apiClient.tasks.create.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast({
         title: "Task created",
         description: "Task has been created successfully",
       });
       onCreated();
+      utils.tasks.findAll.setData(undefined, (oldTasks) => {
+        const newTasks = oldTasks?.map((task) => {
+          if (task.id === "created-task") {
+            return data;
+          }
+          return task;
+        }) || []; 
+        return newTasks;
+      });
     },
     onError: () => {
       onOpenChange(true);
@@ -53,8 +62,7 @@ export const useTaskDialog = ({
     onMutate: async (newTask) => {
       utils.tasks.findAll.setData(undefined, (oldTasks) => {
         const task = {
-          // This is a fake task object, the real task object is returned from the server
-          id: String(Math.random()),
+          id: "created-task",
           title: newTask.title,
           dueDate: newTask.dueDate || null,
           completed: false,
