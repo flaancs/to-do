@@ -1,5 +1,5 @@
 import { SVGProps } from "react";
-import { Button } from "./button";
+import { Button } from "../ui/button";
 import Link from "next/link";
 
 export interface GoogleButtonProps {
