@@ -57,7 +57,6 @@ model Task {
   title     String
   dueDate   DateTime?
   completed Boolean
-  color     String
   userId    String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
