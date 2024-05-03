@@ -3,6 +3,7 @@ import { ApiClientProvider } from "@/components/providers/api-client";
 import { UserContextProvider } from "@/context/user-context";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ApiOutput } from "@/packages/api";
+import { Toaster } from "../ui/toaster";
 
 export interface ClientProviderProps {
   user: ApiOutput["auth"]["user"] | null;
@@ -15,6 +16,7 @@ export function ClientProviders({ user, children }: ClientProviderProps) {
       <UserContextProvider initialUser={user}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider>{children}</TooltipProvider>
+          <Toaster />
         </ThemeProvider>
       </UserContextProvider>
     </ApiClientProvider>
