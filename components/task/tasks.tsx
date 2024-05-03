@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { useTasks } from "@/hooks/task/use-tasks";
 import { TaskCardSkeleton } from "./task-card-skeleton";
 import type { Tasks } from "@lib/types";
+import { motion } from "framer-motion";
 
 export interface TaskProps {
   tasks: Tasks;
@@ -56,12 +57,13 @@ export function Tasks({ tasks, isLoadingTasks }: TaskProps) {
           </div>
         ) : tasks && tasks.length > 0 ? (
             tasks.map((task) => (
+              <motion.div layout key={task.id}>
               <TaskCard
-                key={task.id}
                 task={task}
                 onDelete={handleOpenDeleteAlert}
                 onUpdated={handleTaskCreatedOrUpdated}
               />
+              </motion.div>
             ))
         ) : (
           <div className="flex flex-col items-center gap-4 rounded-md border py-4 text-muted-foreground">
