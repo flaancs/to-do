@@ -68,3 +68,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Usehooks-ts](https://usehooks-ts.com/introduction)
 - [Nextjs TopLoader](https://www.npmjs.com/package/nextjs-toploader)
 - [Moment](https://momentjs.com/)
+- [Zod formik adapter](https://www.npmjs.com/package/zod-formik-adapter)
+- [TanstackQuery Optimistic Updates](https://tanstack.com/query/v4/docs/framework/react/guides/optimistic-updates)
+
+## Optimistic UI
+
+I chose to implement optimistic UI because I believe it's one of the best approaches for creating an application that feels reactive, interactive, and responsive to the user.
