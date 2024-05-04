@@ -1,5 +1,6 @@
 "use client";
 
+import { handleRedirect } from "@lib/utils";
 import { apiClient } from "@lib/api-client";
 import { ApiOutput } from "@packages/api";
 import { useQueryClient } from "@tanstack/react-query";
@@ -59,13 +60,12 @@ export function UserContextProvider({
     const logout = async () => {
         await logoutMutation.mutateAsync();
         queryClient.removeQueries({ queryKey: getQueryKey(apiClient.auth) });
-        reloadUser();
         setUser(null);
         authBroadcastChannel.postMessage({
             type: "logout",
             user: null,
         } satisfies AuthEvent);
-        router.replace("/auth/login");
+        handleRedirect("/auth/login");
     };
 
     useEffect(() => {

@@ -1,9 +1,9 @@
-import { useToast } from "@/components/ui/use-toast";
-import { useUser } from "@/context/user-context";
+import { handleRedirect } from "@lib/utils";
 import { apiClient } from "@lib/api-client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
+import { useToast } from "@/components/ui/use-toast";
 
 const RecoveryPasswordSchema = z
     .object({
@@ -31,17 +31,14 @@ const recoveryPasswordFormValidationSchema = toFormikValidationSchema(
 
 export const useRecovery = () => {
     const { toast } = useToast();
-    const { reloadUser } = useUser();
     const searchParams = useSearchParams();
-    const router = useRouter();
 
     const setPasswordMutation = apiClient.auth.setPassword.useMutation({
         onSuccess: () => {
             toast({
                 title: "Your password has been updated successfully",
             });
-            reloadUser();
-            router.replace("/todos");
+            handleRedirect("/todos")
         },
         onError: (error) => {
             toast({

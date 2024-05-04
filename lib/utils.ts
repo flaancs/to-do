@@ -29,3 +29,10 @@ export const generateToken = (length: number): string => {
 
     return result;
 };
+
+export const handleRedirect = (route: string) => {
+    window.location.href = new URL(
+        route,
+      window.location.origin,
+    ).toString();
+  };

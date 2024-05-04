@@ -1,4 +1,4 @@
-import { sendEmail } from "@/lib/emails";
+import { sendEmail } from "@lib/emails";
 import { generateToken } from "@lib/utils";
 import { db } from "@packages/db";
 import { TRPCError } from "@trpc/server";
