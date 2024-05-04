@@ -1,22 +1,19 @@
-import { sortTasks } from "@lib/utils";
-import { TaskSchema, db } from "@packages/db";
+import { sortTodos } from "@lib/utils";
+import { TodoSchema, db } from "@packages/db";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { protectedProcedure } from "../../trpc/base";
 
 export const findAll = protectedProcedure
-  .output(z.array(TaskSchema))
+  .output(z.array(TodoSchema))
   .query(async ({ ctx: { user } }) => {
     try {
-      const tasks = await db.task.findMany({
+      const todos = await db.todo.findMany({
         where: {
           userId: user.id,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
+        }
       });
-      return sortTasks(tasks);
+      return sortTodos(todos);
     } catch (error: any) {
       console.error(error);
       throw new TRPCError({

@@ -1,4 +1,4 @@
-import type { Task as TaskDB } from "@packages/db";
+import type { Todo } from "@packages/db";
 
-export type Task = TaskDB;
-export type Tasks = Task[] | undefined;
+export type {Todo};
+export type Todos = Todo[] | undefined;

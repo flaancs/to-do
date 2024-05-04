@@ -9,24 +9,24 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-export interface DeleteTaskAlertProps {
+export interface DeleteTodoAlertProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onDelete: () => void;
 }
 
-export function DeleteTaskAlert({
+export function DeleteTodoAlert({
   open,
   onOpenChange,
   onDelete,
-}: DeleteTaskAlertProps) {
+}: DeleteTodoAlertProps) {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This will permanently delete the task.
+            This will permanently delete the todo.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

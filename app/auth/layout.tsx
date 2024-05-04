@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 export default async function AuthLayout({ children }: PropsWithChildren<{}>) {
   await userRedirect({
     loggedIn: true,
-    location: "/list",
+    location: "/todos",
   });
 
   return children;

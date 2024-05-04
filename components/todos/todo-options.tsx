@@ -6,24 +6,24 @@ import {
 } from "@/components/ui/tooltip";
 import { Pencil, TrashIcon } from "lucide-react";
 
-export interface TaskOptionsProps {
+export interface TodoOptionsProps {
   disabled?: boolean;
   showOptions?: boolean;
   onDelete: () => void;
   onEdit: () => void;
 }
 
-export function TaskOptions({
+export function TodoOptions({
   disabled,
   showOptions,
   onDelete,
   onEdit,
-}: TaskOptionsProps) {
+}: TodoOptionsProps) {
   if (!showOptions) return null;
   return (
     <div className="flex items-center space-x-2">
       <Tooltip>
-        <TooltipContent>Edit task</TooltipContent>
+        <TooltipContent>Edit todo</TooltipContent>
         <TooltipTrigger asChild>
           <Button
             size="icon"
@@ -32,12 +32,12 @@ export function TaskOptions({
             onClick={onEdit}
           >
             <Pencil className="h-4 w-4" />
-            <span className="sr-only">Edit task</span>
+            <span className="sr-only">Edit todo</span>
           </Button>
         </TooltipTrigger>
       </Tooltip>
       <Tooltip>
-        <TooltipContent>Delete task</TooltipContent>
+        <TooltipContent>Delete todo</TooltipContent>
         <TooltipTrigger asChild>
           <Button
             size="icon"
@@ -46,7 +46,7 @@ export function TaskOptions({
             onClick={onDelete}
           >
             <TrashIcon className="h-4 w-4" />
-            <span className="sr-only">Delete task</span>
+            <span className="sr-only">Delete todo</span>
           </Button>
         </TooltipTrigger>
       </Tooltip>

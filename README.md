@@ -71,7 +71,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [TanstackQuery Optimistic Updates](https://tanstack.com/query/v4/docs/framework/react/guides/optimistic-updates)
 - [Lodash](https://lodash.com/)
 - [Framer motion layout animations](https://www.framer.com/motion/layout-animations/)
-
-## Optimistic UI
-
-I chose to implement optimistic UI because I believe it's one of the best approaches for creating an application that feels reactive, interactive, and responsive to the user.
+- [NextJS Image optimization](https://nextjs.org/docs/messages/install-sharp)

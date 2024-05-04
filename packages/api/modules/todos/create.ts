@@ -1,4 +1,4 @@
-import { TaskSchema, db } from "@packages/db";
+import { TodoSchema, db } from "@packages/db";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { protectedProcedure } from "../../trpc/base";
@@ -9,10 +9,10 @@ export const create = protectedProcedure
       title: z.string(),
     }),
   )
-  .output(TaskSchema)
+  .output(TodoSchema)
   .mutation(async ({ input: { title }, ctx: { user } }) => {
     try {
-      const createdTask = await db.task.create({
+      const createdTodo = await db.todo.create({
         data: {
           title,
           userId: user.id,
@@ -20,7 +20,7 @@ export const create = protectedProcedure
         },
       });
 
-      return createdTask;
+      return createdTodo;
     } catch (error: any) {
       console.error(error);
       throw new TRPCError({

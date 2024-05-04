@@ -1,20 +1,20 @@
 "use client";
-import { useTaskCard } from "@/hooks/task/use-task-card";
-import type { Task } from "@lib/types";
+import { useTodoCard } from "@/hooks/todo/use-todo-card";
+import type { Todo } from "@lib/types";
 import { cn } from "@lib/utils";
 import { motion } from "framer-motion";
 import { TrashIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 
-export interface TaskCardProps {
-  task: Task;
-  onDelete: (task: Task) => void;
+export interface TodoCardProps {
+  todo: Todo;
+  onDelete: (todo: Todo) => void;
 }
 
-export function TaskCard({ task, onDelete }: TaskCardProps) {
-  const { isLoadingUpdate, handleUpdateTask, handleDebouncedChangeTitle } =
-    useTaskCard({ task });
+export function TodoCard({ todo, onDelete }: TodoCardProps) {
+  const { isLoadingUpdate, handleUpdateTodo, handleDebouncedChangeTitle } =
+    useTodoCard({ todo });
 
   return (
     <motion.div
@@ -24,24 +24,24 @@ export function TaskCard({ task, onDelete }: TaskCardProps) {
       })}
     >
       <Checkbox
-        id={task.id}
-        defaultChecked={task.completed}
+        id={todo.id}
+        defaultChecked={todo.completed}
         onCheckedChange={(completed: boolean) =>
-          handleUpdateTask({ completed })
+          handleUpdateTodo({ completed })
         }
         disabled={isLoadingUpdate}
       />
       <Input
         name="title"
         className={cn({
-          "line-through": task.completed,
+          "line-through": todo.completed,
         })}
-        defaultValue={task.title}
-        disabled={isLoadingUpdate || task.completed}
-        placeholder="Enter task title"
+        defaultValue={todo.title}
+        disabled={isLoadingUpdate || todo.completed}
+        placeholder="Enter todo title"
         onChange={handleDebouncedChangeTitle}
       />
-      <button onClick={() => onDelete(task)}>
+      <button onClick={() => onDelete(todo)}>
         <TrashIcon className="h-4 w-4" />
       </button>
     </motion.div>
