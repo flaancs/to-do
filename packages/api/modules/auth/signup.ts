@@ -14,6 +14,7 @@ export const signup = publicProcedure
                 .max(255)
                 .transform((v) => v.toLowerCase()),
             password: z.string().min(8).max(255),
+            passwordConfirm: z.string().min(8).max(255),
             name: z.string().min(1).max(255),
         }),
     )
@@ -29,10 +30,17 @@ export const signup = publicProcedure
     )
     .mutation(
         async ({
-            input: { email, password, name },
+            input: { email, password, passwordConfirm, name },
             ctx: { responseHeaders },
         }) => {
             try {
+                if (password !== passwordConfirm) {
+                    throw new TRPCError({
+                        code: "BAD_REQUEST",
+                        message: "Passwords do not match.",
+                    });
+                }
+
                 const hashedPassword = await hashPassword(password);
                 const user = await db.user.create({
                     data: {

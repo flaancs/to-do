@@ -1,4 +1,5 @@
 import { useToast } from "@/components/ui/use-toast";
+import { useUser } from "@/context/user-context";
 import { apiClient } from "@lib/api-client";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
@@ -20,12 +21,13 @@ const loginFormSchema = toFormikValidationSchema(LoginSchema);
 
 export const useLogin = () => {
     const { toast } = useToast();
+    const { reloadUser } = useUser();
     const router = useRouter();
 
     const loginMutation = apiClient.auth.login.useMutation({
         onSuccess: () => {
+            reloadUser();
             router.replace("/todos");
-            router.refresh();
         },
         onError: () => {
             toast({

@@ -1,4 +1,5 @@
 import { useToast } from "@/components/ui/use-toast";
+import { useUser } from "@/context/user-context";
 import { apiClient } from "@lib/api-client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
@@ -30,6 +31,7 @@ const recoveryPasswordFormValidationSchema = toFormikValidationSchema(
 
 export const useRecovery = () => {
     const { toast } = useToast();
+    const { reloadUser } = useUser();
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -38,8 +40,8 @@ export const useRecovery = () => {
             toast({
                 title: "Your password has been updated successfully",
             });
+            reloadUser();
             router.replace("/todos");
-            router.refresh();
         },
         onError: (error) => {
             toast({

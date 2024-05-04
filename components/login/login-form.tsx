@@ -1,9 +1,7 @@
 "use client";
-import { GoogleButton } from "@/components/shared/google-button";
 import { Label } from "@/components/shared/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { useLogin } from "@/hooks/login/use-login";
 import { Form, Formik } from "formik";
 import Link from "next/link";
@@ -72,16 +70,6 @@ export function LoginForm() {
                     >
                         Sign In
                     </Button>
-                    <div className="mt-2">
-                        <Link
-                            href="/auth/signup"
-                            className="text-sm underline-offset-2 hover:underline"
-                        >
-                            Don&apos;t have an account? Sign up
-                        </Link>
-                    </div>
-                    <Separator className="my-8" />
-                    <GoogleButton action="Sign in" />
                 </Form>
             )}
         </Formik>
