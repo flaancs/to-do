@@ -4,8 +4,8 @@ import * as todoProcedures from "../modules/todos";
 import { router } from "./base";
 
 export const apiRouter = router({
-  auth: router(authProcedures),
-  todos: router(todoProcedures),
+    auth: router(authProcedures),
+    todos: router(todoProcedures),
 });
 
 export type ApiRouter = typeof apiRouter;

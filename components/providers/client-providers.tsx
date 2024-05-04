@@ -6,19 +6,23 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "../ui/toaster";
 
 export interface ClientProviderProps {
-  user: ApiOutput["auth"]["user"] | null;
-  children: React.ReactNode;
+    user: ApiOutput["auth"]["user"] | null;
+    children: React.ReactNode;
 }
 
 export function ClientProviders({ user, children }: ClientProviderProps) {
-  return (
-    <ApiClientProvider>
-      <UserContextProvider initialUser={user}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TooltipProvider>{children}</TooltipProvider>
-          <Toaster />
-        </ThemeProvider>
-      </UserContextProvider>
-    </ApiClientProvider>
-  );
+    return (
+        <ApiClientProvider>
+            <UserContextProvider initialUser={user}>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                >
+                    <TooltipProvider>{children}</TooltipProvider>
+                    <Toaster />
+                </ThemeProvider>
+            </UserContextProvider>
+        </ApiClientProvider>
+    );
 }

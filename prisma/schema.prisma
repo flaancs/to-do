@@ -17,16 +17,17 @@ datasource db {
 }
 
 model User {
-  id                String             @id @default(cuid())
-  email             String             @unique
-  name              String
-  avatarUrl         String?
-  hashedPassword    String?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  Sessions          UserSession[]
-  UserOauthAccounts UserOauthAccount[]
-  Todos             Todo[]
+  id                 String              @id @default(cuid())
+  email              String              @unique
+  name               String
+  avatarUrl          String?
+  hashedPassword     String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  Sessions           UserSession[]
+  UserOauthAccounts  UserOauthAccount[]
+  Todos              Todo[]
+  UserRecoveryTokens UserRecoveryToken[]
 }
 
 model UserSession {
@@ -52,12 +53,24 @@ model UserOauthAccount {
   @@unique([providerId, providerUserId])
 }
 
+model UserRecoveryToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
 model Todo {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   title     String
   completed Boolean
   userId    String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
 }

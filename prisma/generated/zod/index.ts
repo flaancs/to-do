@@ -18,6 +18,8 @@ export const UserSessionScalarFieldEnumSchema = z.enum(['id','userId','expiresAt
 
 export const UserOauthAccountScalarFieldEnumSchema = z.enum(['id','providerId','providerUserId','userId','createdAt','updatedAt']);
 
+export const UserRecoveryTokenScalarFieldEnumSchema = z.enum(['id','userId','token','expiresAt','createdAt','updatedAt']);
+
 export const TodoScalarFieldEnumSchema = z.enum(['id','title','completed','userId','createdAt','updatedAt']);
 
 export const SortOrderSchema = z.enum(['asc','desc']);
@@ -73,6 +75,21 @@ export const UserOauthAccountSchema = z.object({
 })
 
 export type UserOauthAccount = z.infer<typeof UserOauthAccountSchema>
+
+/////////////////////////////////////////
+// USER RECOVERY TOKEN SCHEMA
+/////////////////////////////////////////
+
+export const UserRecoveryTokenSchema = z.object({
+  id: z.string().cuid(),
+  userId: z.string(),
+  token: z.string(),
+  expiresAt: z.coerce.date(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
+})
+
+export type UserRecoveryToken = z.infer<typeof UserRecoveryTokenSchema>
 
 /////////////////////////////////////////
 // TODO SCHEMA

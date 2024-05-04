@@ -7,22 +7,24 @@ import { PropsWithChildren, useState } from "react";
 import superjson from "superjson";
 
 export function ApiClientProvider({ children }: PropsWithChildren<{}>) {
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
 
-  const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
-    apiClient.createClient({
-      links: [
-        httpBatchLink({
-          url: baseUrl + "/api",
-          transformer: superjson,
+    const [queryClient] = useState(() => new QueryClient());
+    const [trpcClient] = useState(() =>
+        apiClient.createClient({
+            links: [
+                httpBatchLink({
+                    url: baseUrl + "/api",
+                    transformer: superjson,
+                }),
+            ],
         }),
-      ],
-    }),
-  );
-  return (
-    <apiClient.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </apiClient.Provider>
-  );
+    );
+    return (
+        <apiClient.Provider client={trpcClient} queryClient={queryClient}>
+            <QueryClientProvider client={queryClient}>
+                {children}
+            </QueryClientProvider>
+        </apiClient.Provider>
+    );
 }
