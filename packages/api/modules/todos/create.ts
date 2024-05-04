@@ -14,7 +14,7 @@ export const create = protectedProcedure
         try {
             const createdTodo = await db.todo.create({
                 data: {
-                    title,
+                    title: title.trim(),
                     userId: user.id,
                     completed: false,
                 },

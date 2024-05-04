@@ -39,7 +39,7 @@ export const update = protectedProcedure
                     id,
                 },
                 data: {
-                    title,
+                    title: title?.trim(),
                     completed,
                 },
             });

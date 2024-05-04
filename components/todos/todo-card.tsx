@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { TrashIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
+import { Tooltip, TooltipContent } from "../ui/tooltip";
+import { TooltipTrigger } from "@radix-ui/react-tooltip";
 
 export interface TodoCardProps {
     todo: Todo;
@@ -41,9 +43,14 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
                 placeholder="Enter todo title"
                 onChange={handleDebouncedChangeTitle}
             />
-            <button onClick={() => onDelete(todo)}>
+            <Tooltip>
+                <TooltipContent>Delete todo</TooltipContent>
+                <TooltipTrigger asChild>
+                <button onClick={() => onDelete(todo)} disabled={todo.id === "created-todo"}>
                 <TrashIcon className="h-4 w-4" />
             </button>
+                </TooltipTrigger>
+            </Tooltip>
         </motion.div>
     );
 }
