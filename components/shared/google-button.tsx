@@ -8,7 +8,7 @@ export interface GoogleButtonProps {
 
 export function GoogleButton({ action }: GoogleButtonProps) {
     return (
-        <Button asChild className="w-full" variant="outline">
+        <Button asChild className="w-full" variant="outline" type="button">
             <Link href="/api/oauth/google">
                 <ChromeIcon className="mr-2 h-5 w-5" />
                 {action} with Google

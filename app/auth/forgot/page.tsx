@@ -11,6 +11,7 @@ export default function Forgot() {
     const {
         sent,
         handleSubmit,
+        handleKeyDown,
         forgotPasswordMutation,
         forgotPasswordFormValidationSchema,
     } = useForgot();
@@ -51,6 +52,7 @@ export default function Forgot() {
                                     name="email"
                                     onChange={handleChange}
                                     value={values.email}
+                                    onKeyDown={handleKeyDown}
                                     placeholder="email@example.com"
                                     required
                                     type="email"

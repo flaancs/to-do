@@ -36,6 +36,7 @@ export const useForgot = () => {
     return {
         sent,
         handleSubmit,
+        handleKeyDown,
         forgotPasswordMutation,
         forgotPasswordFormValidationSchema,
     };

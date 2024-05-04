@@ -1,8 +1,8 @@
 import { useToast } from "@/components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
+import { toFormikValidationSchema } from "zod-formik-adapter";
 
 const RecoveryPasswordSchema = z
     .object({
@@ -42,10 +42,10 @@ export const useRecovery = () => {
             router.refresh();
         },
         onError: (error) => {
-                toast({
-                    title: "An error occurred while updating your password",
-                    description: error.message,
-                });
+            toast({
+                title: "An error occurred while updating your password",
+                description: error.message,
+            });
         },
     });
 
@@ -53,7 +53,7 @@ export const useRecovery = () => {
         password: string;
         passwordConfirm: string;
     }) => {
-        const token = searchParams.get('token') as string;
+        const token = searchParams.get("token") as string;
         await setPasswordMutation.mutateAsync({
             token,
             password: values.password,

@@ -50,6 +50,7 @@ pnpm studio
 ## Emails
 
 #### Preview emails
+
 ```bash
 pnpm email
 ```
