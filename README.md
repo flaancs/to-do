@@ -82,3 +82,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 -   [NextJS Image optimization](https://nextjs.org/docs/messages/install-sharp)
 -   [React email](https://react.email/)
 -   [Plunk react email](https://docs.useplunk.com/guides/react-email)
+-   [Next Intl](https://next-intl-docs.vercel.app/docs/getting-started/app-router)
