@@ -86,6 +86,9 @@ dependencies:
     date-fns:
         specifier: ^3.6.0
         version: 3.6.0
+    deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
     formik:
         specifier: ^2.4.6
         version: 2.4.6(react@18.3.1)
@@ -104,6 +107,9 @@ dependencies:
     next:
         specifier: 14.2.3
         version: 14.2.3(react-dom@18.3.1)(react@18.3.1)
+    next-intl:
+        specifier: ^3.12.2
+        version: 3.12.2(next@14.2.3)(react@18.3.1)
     next-themes:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@18.3.1)(react@18.3.1)
@@ -699,6 +705,64 @@ packages:
             {
                 integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==,
             }
+        dev: false
+
+    /@formatjs/ecma402-abstract@1.18.2:
+        resolution:
+            {
+                integrity: sha512-+QoPW4csYALsQIl8GbN14igZzDbuwzcpWrku9nyMXlaqAlwRBgl5V+p0vWMGFqHOw37czNXaP/lEk4wbLgcmtA==,
+            }
+        dependencies:
+            "@formatjs/intl-localematcher": 0.5.4
+            tslib: 2.6.2
+        dev: false
+
+    /@formatjs/fast-memoize@2.2.0:
+        resolution:
+            {
+                integrity: sha512-hnk/nY8FyrL5YxwP9e4r9dqeM6cAbo8PeU9UjyXojZMNvVad2Z06FAVHyR3Ecw6fza+0GH7vdJgiKIVXTMbSBA==,
+            }
+        dependencies:
+            tslib: 2.6.2
+        dev: false
+
+    /@formatjs/icu-messageformat-parser@2.7.6:
+        resolution:
+            {
+                integrity: sha512-etVau26po9+eewJKYoiBKP6743I1br0/Ie00Pb/S/PtmYfmjTcOn2YCh2yNkSZI12h6Rg+BOgQYborXk46BvkA==,
+            }
+        dependencies:
+            "@formatjs/ecma402-abstract": 1.18.2
+            "@formatjs/icu-skeleton-parser": 1.8.0
+            tslib: 2.6.2
+        dev: false
+
+    /@formatjs/icu-skeleton-parser@1.8.0:
+        resolution:
+            {
+                integrity: sha512-QWLAYvM0n8hv7Nq5BEs4LKIjevpVpbGLAJgOaYzg9wABEoX1j0JO1q2/jVkO6CVlq0dbsxZCngS5aXbysYueqA==,
+            }
+        dependencies:
+            "@formatjs/ecma402-abstract": 1.18.2
+            tslib: 2.6.2
+        dev: false
+
+    /@formatjs/intl-localematcher@0.2.32:
+        resolution:
+            {
+                integrity: sha512-k/MEBstff4sttohyEpXxCmC3MqbUn9VvHGlZ8fauLzkbwXmVrEeyzS+4uhrvAk9DWU9/7otYWxyDox4nT/KVLQ==,
+            }
+        dependencies:
+            tslib: 2.6.2
+        dev: false
+
+    /@formatjs/intl-localematcher@0.5.4:
+        resolution:
+            {
+                integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==,
+            }
+        dependencies:
+            tslib: 2.6.2
         dev: false
 
     /@humanwhocodes/config-array@0.11.14:
@@ -6714,6 +6778,18 @@ packages:
         engines: { node: ">= 0.10" }
         dev: false
 
+    /intl-messageformat@10.5.11:
+        resolution:
+            {
+                integrity: sha512-eYq5fkFBVxc7GIFDzpFQkDOZgNayNTQn4Oufe8jw6YY6OHVw70/4pA3FyCsQ0Gb2DnvEJEMmN2tOaXUGByM+kg==,
+            }
+        dependencies:
+            "@formatjs/ecma402-abstract": 1.18.2
+            "@formatjs/fast-memoize": 2.2.0
+            "@formatjs/icu-messageformat-parser": 2.7.6
+            tslib: 2.6.2
+        dev: false
+
     /invariant@2.2.4:
         resolution:
             {
@@ -7525,6 +7601,22 @@ packages:
             {
                 integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==,
             }
+        dev: false
+
+    /next-intl@3.12.2(next@14.2.3)(react@18.3.1):
+        resolution:
+            {
+                integrity: sha512-KsbvKs00VcL1EIMIaRln129lR7xdpB0Lng1+8HR1MYywtRo+r4Pi7HVUZJnnO364jsZeptekYejJd0NBo3W8Fw==,
+            }
+        peerDependencies:
+            next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+        dependencies:
+            "@formatjs/intl-localematcher": 0.2.32
+            negotiator: 0.6.3
+            next: 14.2.3(react-dom@18.3.1)(react@18.3.1)
+            react: 18.3.1
+            use-intl: 3.12.2(react@18.3.1)
         dev: false
 
     /next-themes@0.3.0(react-dom@18.3.1)(react@18.3.1):
@@ -9538,6 +9630,19 @@ packages:
             "@types/react": 18.3.1
             react: 18.3.1
             tslib: 2.6.2
+        dev: false
+
+    /use-intl@3.12.2(react@18.3.1):
+        resolution:
+            {
+                integrity: sha512-pX+FQVNLoorie/AV9Y4EgeeNZG8ZLJIQu1wQALTvKo3TCQhlYikO+9xbQpgFf0bjXawQ+JUdcu0BWAhq06eMYg==,
+            }
+        peerDependencies:
+            react: ^16.8.0 || ^17.0.0 || ^18.0.0
+        dependencies:
+            "@formatjs/ecma402-abstract": 1.18.2
+            intl-messageformat: 10.5.11
+            react: 18.3.1
         dev: false
 
     /use-sidecar@1.1.2(@types/react@18.3.1)(react@18.3.1):

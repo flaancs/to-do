@@ -4,14 +4,16 @@ import { ApiOutput } from "@packages/api";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-const UpdateUserSchema = z.object({
-    name: z.string().min(3).max(255),
-    password: z.string().min(8).max(255).optional(),
-    passwordConfirm: z.string().min(8).max(255).optional(),
-}).refine((data) => data.password === data.passwordConfirm, {
-    message: "Passwords do not match",
-    path: ["passwordConfirm"],
-});
+const UpdateUserSchema = z
+    .object({
+        name: z.string().min(3).max(255),
+        password: z.string().min(8).max(255).optional(),
+        passwordConfirm: z.string().min(8).max(255).optional(),
+    })
+    .refine((data) => data.password === data.passwordConfirm, {
+        message: "Passwords do not match",
+        path: ["passwordConfirm"],
+    });
 
 const updateUserFormValidationSchema =
     toFormikValidationSchema(UpdateUserSchema);

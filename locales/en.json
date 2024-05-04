@@ -1,0 +1,9 @@
+{
+    "site": {
+        "title": "Todo App",
+        "description": "A simple to-do app built with Next.js and TypeScript."
+    },
+    "todos": {
+        "todos": "Todos"
+    }
+}

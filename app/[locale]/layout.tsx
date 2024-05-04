@@ -4,32 +4,37 @@ import { ThemeToggle } from "@components/shared/theme-toggle";
 import { UserMenu } from "@components/shared/user-menu";
 import { cn } from "@lib/utils";
 import { createApiCaller } from "@packages/api";
-import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Inter as FontSans } from "next/font/google";
 import Link from "next/link";
 import NextTopLoader from "nextjs-toploader";
-import "./globals.css";
+import "../globals.css";
 
 const fontSans = FontSans({
     subsets: ["latin"],
     variable: "--font-sans",
 });
 
-export const metadata: Metadata = {
-    title: "To-do App",
-    description: "A simple to-do app built with Next.js and TypeScript.",
-};
+export async function generateMetadata() {
+    const t = await getTranslations();
+    return {
+        title: t("site.title"),
+        description: t("site.description"),
+    };
+}
 
-export default async function RootLayout({
+export default async function LocaleLayout({
     children,
+    params: { locale },
 }: Readonly<{
     children: React.ReactNode;
+    params: { locale: string };
 }>) {
     const apiCaller = await createApiCaller();
     const user = await apiCaller.auth.user();
 
     return (
-        <html lang="en">
+        <html lang={locale}>
             <body
                 className={cn(
                     "min-h-screen bg-background font-sans antialiased",
