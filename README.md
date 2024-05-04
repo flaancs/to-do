@@ -59,13 +59,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## References
 
--   [Karma commit message](https://karma-runner.github.io/6.4/dev/git-commit-msg.html).
--   [How to install NVM](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide).
--   [Next.js Documentation](https://nextjs.org/docs).
--   [Shadcn Documentation](https://ui.shadcn.com/docs).
--   [Shadcn next-themes Documentation](https://ui.shadcn.com/docs/dark-mode/next).
--   [Prisma documentation](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql).
--   [Zod prisma types](https://www.npmjs.com/package/zod-prisma-types#zod-prisma-types-).
+-   [Karma commit message](https://karma-runner.github.io/6.4/dev/git-commit-msg.html)
+-   [How to install NVM](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide)
+-   [Next.js Documentation](https://nextjs.org/docs)
+-   [Shadcn Documentation](https://ui.shadcn.com/docs)
+-   [Shadcn next-themes Documentation](https://ui.shadcn.com/docs/dark-mode/next)
+-   [Prisma documentation](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql)
+-   [Zod prisma types](https://www.npmjs.com/package/zod-prisma-types#zod-prisma-types-)
 -   [Dotenv-cli](https://www.npmjs.com/package/dotenv-cli)
 -   [Lucia auth](https://lucia-auth.com/)
 -   [TRPC](https://trpc.io/docs/client/nextjs/setup)
