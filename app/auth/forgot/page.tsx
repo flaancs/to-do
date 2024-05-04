@@ -4,7 +4,7 @@ import { Input } from "@components/ui/input";
 import { Label } from "@components/ui/label";
 import { useForgot } from "@hooks/forgot/use-forgot";
 import { Form, Formik } from "formik";
-import { SendIcon } from "lucide-react";
+import { SendIcon, UndoIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Forgot() {
@@ -54,7 +54,6 @@ export default function Forgot() {
                                     value={values.email}
                                     onKeyDown={handleKeyDown}
                                     placeholder="email@example.com"
-                                    required
                                     type="email"
                                 />
                             </div>
@@ -70,14 +69,15 @@ export default function Forgot() {
                     )}
                 </Formik>
             )}
-            <div className="flex justify-center">
-                <Link
-                    href="/auth/login"
-                    className="underline-offset-2 hover:underline"
-                >
-                    Go back to login
-                </Link>
-            </div>
+            {sent && (
+                <div className="flex justify-center">
+                    <Button asChild className="mt-4">
+                        <Link href="/auth/login">
+                            <UndoIcon className="mr-2 h-4 w-4" /> Go to login
+                        </Link>
+                    </Button>
+                </div>
+            )}
         </div>
     );
 }
