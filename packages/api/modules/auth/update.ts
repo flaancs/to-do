@@ -4,7 +4,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { protectedProcedure } from "../../trpc/base";
 
-export const login = protectedProcedure
+export const update = protectedProcedure
     .input(
         z.object({
             id: z.string(),
@@ -51,7 +51,7 @@ export const login = protectedProcedure
                     data: {
                         name,
                         ...(password && {
-                            password: await hashPassword(password),
+                            hashedPassword: await hashPassword(password),
                         }),
                     },
                 });
