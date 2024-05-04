@@ -1,8 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useForgot } from "@/hooks/forgot/use-forgot";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { Label } from "@components/ui/label";
+import { useForgot } from "@hooks/forgot/use-forgot";
 import { Form, Formik } from "formik";
 import { SendIcon } from "lucide-react";
 import Link from "next/link";

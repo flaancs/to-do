@@ -1,5 +1,5 @@
 "use client";
-import { Todos } from "@/components/todos/todos";
+import { Todos } from "@components/todos/todos";
 import { apiClient } from "@lib/api-client";
 
 export default function List() {

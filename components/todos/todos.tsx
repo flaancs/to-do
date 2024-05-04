@@ -1,6 +1,6 @@
 "use client";
 
-import { useTodos } from "@/hooks/todo/use-todos";
+import { useTodos } from "@hooks/todo/use-todos";
 import type { Todos } from "@lib/types";
 import { InfoIcon } from "lucide-react";
 import { Separator } from "../ui/separator";

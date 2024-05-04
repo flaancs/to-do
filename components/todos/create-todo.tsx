@@ -1,4 +1,4 @@
-import { useCreateTodo } from "@/hooks/todo/use-create-todo";
+import { useCreateTodo } from "@hooks/todo/use-create-todo";
 import { CheckIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";

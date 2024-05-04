@@ -1,4 +1,4 @@
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
 import { sortTodos } from "@lib/utils";
 import { useState } from "react";

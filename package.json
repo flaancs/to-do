@@ -10,9 +10,9 @@
         "lint": "next lint",
         "format": "prettier --write .",
         "shadcn": "npx shadcn-ui@latest add",
-        "generate": "prisma generate",
-        "studio": "dotenv -c -- prisma studio",
-        "push": "dotenv -c -- prisma db push",
+        "generate": "prisma generate --schema=./packages/db/schema.prisma",
+        "studio": "dotenv -c -- prisma studio --schema=./packages/db/schema.prisma",
+        "push": "dotenv -c -- prisma db push --schema=./packages/db/schema.prisma",
         "email": "email dev --dir ./lib/emails",
         "postinstall": "prisma generate"
     },

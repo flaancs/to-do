@@ -1,4 +1,4 @@
-import { createApiCaller } from "@/packages/api";
+import { createApiCaller } from "@packages/api";
 import { redirect } from "next/navigation";
 
 export interface RedirectOptions {

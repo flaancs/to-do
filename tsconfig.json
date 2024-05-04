@@ -18,9 +18,10 @@
             }
         ],
         "paths": {
-            "@/*": ["./*"],
+            "@hooks/*": ["./hooks/*"],
+            "@context/*": ["./context/*"],
+            "@components/*": ["./components/*"],
             "@packages/*": ["./packages/*"],
-            "@packages/db": ["./prisma/index.ts"],
             "@lib/*": ["./lib/*"]
         }
     },

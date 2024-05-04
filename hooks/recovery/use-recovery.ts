@@ -1,9 +1,9 @@
-import { handleRedirect } from "@lib/utils";
+import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
+import { handleRedirect } from "@lib/utils";
 import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-import { useToast } from "@/components/ui/use-toast";
 
 const RecoveryPasswordSchema = z
     .object({
@@ -38,7 +38,7 @@ export const useRecovery = () => {
             toast({
                 title: "Your password has been updated successfully",
             });
-            handleRedirect("/todos")
+            handleRedirect("/todos");
         },
         onError: (error) => {
             toast({

@@ -1,8 +1,8 @@
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
+import type { Todo } from "@lib/types";
 import { sortTodos } from "@lib/utils";
 import { useState } from "react";
-import type { Todo } from "@lib/types";
 
 export const useTodos = () => {
     const { toast } = useToast();

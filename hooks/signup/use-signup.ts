@@ -1,6 +1,6 @@
-import { useToast } from "@/components/ui/use-toast";
-import { handleRedirect } from "@lib/utils";
+import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
+import { handleRedirect } from "@lib/utils";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
@@ -18,12 +18,18 @@ const SignupSchema = z
             })
             .min(3)
             .max(255),
-        password: z.string({
-            required_error: "Password is required",
-        }).min(8).max(255),
-        passwordConfirm: z.string({
-            required_error: "Password confirmation is required",
-        }).min(8).max(255),
+        password: z
+            .string({
+                required_error: "Password is required",
+            })
+            .min(8)
+            .max(255),
+        passwordConfirm: z
+            .string({
+                required_error: "Password confirmation is required",
+            })
+            .min(8)
+            .max(255),
     })
     .refine((data) => data.password === data.passwordConfirm, {
         message: "Passwords do not match",

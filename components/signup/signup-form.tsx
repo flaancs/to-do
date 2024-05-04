@@ -1,8 +1,8 @@
 "use client";
-import { Label } from "@/components/shared/label";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useSignup } from "@/hooks/signup/use-signup";
+import { Label } from "@components/shared/label";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { useSignup } from "@hooks/signup/use-signup";
 import { Form, Formik } from "formik";
 import { FieldError } from "../shared/field-error";
 
@@ -87,7 +87,12 @@ export function SignupForm() {
                         />
                         <FieldError error={errors.passwordConfirm} />
                     </div>
-                    <Button className="w-full" type="submit" loading={signupMutation.isPending} disabled={signupMutation.isPending}>
+                    <Button
+                        className="w-full"
+                        type="submit"
+                        loading={signupMutation.isPending}
+                        disabled={signupMutation.isPending}
+                    >
                         Sign Up
                     </Button>
                 </Form>

@@ -1,9 +1,9 @@
-import { ClientProviders } from "@/components/providers/client-providers";
-import { Logo } from "@/components/shared/logo";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
-import { UserMenu } from "@/components/shared/user-menu";
-import { createApiCaller } from "@/packages/api";
+import { ClientProviders } from "@components/providers/client-providers";
+import { Logo } from "@components/shared/logo";
+import { ThemeToggle } from "@components/shared/theme-toggle";
+import { UserMenu } from "@components/shared/user-menu";
 import { cn } from "@lib/utils";
+import { createApiCaller } from "@packages/api";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import Link from "next/link";

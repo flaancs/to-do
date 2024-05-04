@@ -1,7 +1,7 @@
 "use client";
 
-import { handleRedirect } from "@lib/utils";
 import { apiClient } from "@lib/api-client";
+import { handleRedirect } from "@lib/utils";
 import { ApiOutput } from "@packages/api";
 import { useQueryClient } from "@tanstack/react-query";
 import { getQueryKey } from "@trpc/react-query";

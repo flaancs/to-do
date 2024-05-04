@@ -6,9 +6,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useUser } from "@/context/user-context";
-import { LogOutIcon } from "lucide-react";
+} from "@components/ui/dropdown-menu";
+import { useUser } from "@context/user-context";
+import { LogOutIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
 import BlankUser from "/public/blank-user.jpeg";
 
@@ -36,6 +36,10 @@ export function UserMenu() {
                     </span>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout}>
+                    <UserIcon className="mr-2 h-4 w-4" />
+                    Update profile
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={logout}>
                     <LogOutIcon className="mr-2 h-4 w-4" />
                     Logout

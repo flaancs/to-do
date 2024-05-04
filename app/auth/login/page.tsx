@@ -1,6 +1,6 @@
-import { LoginForm } from "@/components/login/login-form";
-import { GoogleButton } from "@/components/shared/google-button";
-import { Separator } from "@/components/ui/separator";
+import { LoginForm } from "@components/login/login-form";
+import { GoogleButton } from "@components/shared/google-button";
+import { Separator } from "@components/ui/separator";
 import Link from "next/link";
 
 export default function Login() {

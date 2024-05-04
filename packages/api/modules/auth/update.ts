@@ -37,8 +37,7 @@ export const login = protectedProcedure
                     });
                 }
 
-                let newPassword = password;
-                if (newPassword && newPassword !== passwordConfirmation) {
+                if (password && password !== passwordConfirmation) {
                     throw new TRPCError({
                         code: "BAD_REQUEST",
                         message: "Passwords do not match.",
@@ -51,8 +50,8 @@ export const login = protectedProcedure
                     },
                     data: {
                         name,
-                        ...(newPassword && {
-                            password: await hashPassword(newPassword),
+                        ...(password && {
+                            password: await hashPassword(password),
                         }),
                     },
                 });

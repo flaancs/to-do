@@ -1,4 +1,4 @@
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
 import { Todo } from "@lib/types";
 import { sortTodos } from "@lib/utils";

@@ -1,7 +1,7 @@
-import { ApiClientProvider } from "@/components/providers/api-client";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { UserContextProvider } from "@/context/user-context";
-import { ApiOutput } from "@/packages/api";
+import { ApiClientProvider } from "@components/providers/api-client";
+import { TooltipProvider } from "@components/ui/tooltip";
+import { UserContextProvider } from "@context/user-context";
+import { ApiOutput } from "@packages/api";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "../ui/toaster";
 

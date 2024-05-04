@@ -1,9 +1,9 @@
 "use client";
-import { FieldError } from "@/components/shared/field-error";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useRecovery } from "@/hooks/recovery/use-recovery";
+import { FieldError } from "@components/shared/field-error";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { Label } from "@components/ui/label";
+import { useRecovery } from "@hooks/recovery/use-recovery";
 import { Form, Formik } from "formik";
 
 export default function Recovery() {
