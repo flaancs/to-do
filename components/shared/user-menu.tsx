@@ -1,6 +1,4 @@
 "use client";
-import BlankUser from "/public/blank-user.jpeg";
-import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,8 +7,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOutIcon } from "lucide-react";
 import { useUser } from "@/context/user-context";
+import { LogOutIcon } from "lucide-react";
+import Image from "next/image";
+import BlankUser from "/public/blank-user.jpeg";
 
 export function UserMenu() {
   const { user, logout } = useUser();

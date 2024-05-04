@@ -1,6 +1,6 @@
-import { TRPCError } from "@trpc/server";
 import { hashPassword, lucia } from "@packages/auth";
 import { UserSchema, db } from "@packages/db";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { publicProcedure } from "../../trpc/base";
 

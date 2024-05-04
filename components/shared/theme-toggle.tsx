@@ -1,16 +1,16 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import {
-  DropdownMenuTrigger,
-  DropdownMenuRadioItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuContent,
   DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { useIsClient } from "usehooks-ts";
-import { Button } from "@/components/ui/button";
-import { MoonIcon, SunIcon } from "lucide-react";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme, theme } = useTheme();

@@ -1,5 +1,6 @@
 import { useToast } from "@/components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
+import { sortTasks } from "@lib/utils";
 import { useState } from "react";
 
 export const useCreateTask = () => {
@@ -21,7 +22,7 @@ export const useCreateTask = () => {
             }
             return task;
           }) || [];
-        return newTasks;
+        return sortTasks(newTasks);
       });
     },
     onError: () => {

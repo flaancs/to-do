@@ -1,12 +1,12 @@
+import { getBaseUrl } from "@lib/base-url";
+import { db } from "@packages/db";
 import {
   Google,
   OAuth2RequestError,
   generateCodeVerifier,
   generateState,
 } from "arctic";
-import { db } from "@packages/db";
 import { cookies } from "next/headers";
-import { getBaseUrl } from "@lib/base-url";
 import { lucia } from "../lib/lucia";
 
 export const googleAuth = new Google(

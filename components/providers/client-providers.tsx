@@ -1,8 +1,8 @@
-import { ThemeProvider } from "next-themes";
 import { ApiClientProvider } from "@/components/providers/api-client";
-import { UserContextProvider } from "@/context/user-context";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { UserContextProvider } from "@/context/user-context";
 import { ApiOutput } from "@/packages/api";
+import { ThemeProvider } from "next-themes";
 import { Toaster } from "../ui/toaster";
 
 export interface ClientProviderProps {

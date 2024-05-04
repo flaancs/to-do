@@ -1,6 +1,6 @@
 import { lucia } from "@packages/auth";
-import { cookies } from "next/headers";
 import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
+import { cookies } from "next/headers";
 
 export async function createContext(
   params?: FetchCreateContextFnOptions | { isAdmin?: boolean },

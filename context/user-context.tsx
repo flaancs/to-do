@@ -1,5 +1,7 @@
 "use client";
 
+import { apiClient } from "@lib/api-client";
+import { ApiOutput } from "@packages/api";
 import { useQueryClient } from "@tanstack/react-query";
 import { getQueryKey } from "@trpc/react-query";
 import { useRouter } from "next/navigation";
@@ -10,8 +12,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { ApiOutput } from "@packages/api";
-import { apiClient } from "@lib/api-client";
 
 type User = ApiOutput["auth"]["user"];
 

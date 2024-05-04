@@ -1,8 +1,9 @@
 import { useToast } from "@/components/ui/use-toast";
-import { Task } from "@lib/types";
 import { apiClient } from "@lib/api-client";
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { Task } from "@lib/types";
+import { sortTasks } from "@lib/utils";
 import { debounce } from "lodash";
+import { ChangeEvent, useCallback, useMemo } from "react";
 
 export interface useTaskCardProps {
   task: Task;
@@ -36,10 +37,7 @@ export const useTaskCard = ({ task }: useTaskCardProps) => {
             }
             return task;
           }) || [];
-        newTasks.sort((a, b) =>
-          a.completed === b.completed ? 0 : a.completed ? 1 : -1,
-        );
-        return newTasks;
+        return sortTasks(newTasks);
       });
     },
   });

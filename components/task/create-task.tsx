@@ -1,6 +1,6 @@
 import { useCreateTask } from "@/hooks/task/use-create-task";
-import { Input } from "../ui/input";
 import { CheckIcon } from "lucide-react";
+import { Input } from "../ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export function CreateTask() {

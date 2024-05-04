@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { SVGProps } from "react";
 import { Button } from "../ui/button";
-import Link from "next/link";
 
 export interface GoogleButtonProps {
   action: string;

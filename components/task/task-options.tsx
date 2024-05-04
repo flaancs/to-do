@@ -1,10 +1,10 @@
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Pencil, TrashIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export interface TaskOptionsProps {
   disabled?: boolean;

@@ -1,7 +1,8 @@
 import { useToast } from "@/components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
-import { useState } from "react";
 import type { Task } from "@lib/types";
+import { sortTasks } from "@lib/utils";
+import { useState } from "react";
 
 export const useTasks = () => {
   const { toast } = useToast();
@@ -28,7 +29,7 @@ export const useTasks = () => {
         const newTasks = [...(oldTasks || [])].filter(
           (task) => task.id !== deletedTask.id,
         );
-        return newTasks;
+        return sortTasks(newTasks);
       });
     },
   });

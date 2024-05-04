@@ -1,7 +1,7 @@
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
-import { Lucia, User } from "lucia";
-import { PrismaClient } from "@prisma/client";
 import type { User as UserType } from "@packages/db";
+import { PrismaClient } from "@prisma/client";
+import { Lucia, User } from "lucia";
 
 export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 

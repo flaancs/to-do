@@ -1,5 +1,6 @@
-import { TRPCError } from "@trpc/server";
+import { sortTasks } from "@lib/utils";
 import { TaskSchema, db } from "@packages/db";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { protectedProcedure } from "../../trpc/base";
 
@@ -15,9 +16,7 @@ export const findAll = protectedProcedure
           createdAt: "desc",
         },
       });
-      return tasks.sort((a, b) =>
-        a.completed === b.completed ? 0 : a.completed ? 1 : -1,
-      );
+      return sortTasks(tasks);
     } catch (error: any) {
       console.error(error);
       throw new TRPCError({

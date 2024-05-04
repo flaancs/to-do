@@ -1,10 +1,11 @@
 "use client";
-import { Checkbox } from "../ui/checkbox";
-import type { Task } from "@lib/types";
-import { Input } from "../ui/input";
-import { cn } from "@lib/utils";
 import { useTaskCard } from "@/hooks/task/use-task-card";
+import type { Task } from "@lib/types";
+import { cn } from "@lib/utils";
+import { motion } from "framer-motion";
 import { TrashIcon } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
+import { Input } from "../ui/input";
 
 export interface TaskCardProps {
   task: Task;
@@ -16,7 +17,8 @@ export function TaskCard({ task, onDelete }: TaskCardProps) {
     useTaskCard({ task });
 
   return (
-    <div
+    <motion.div
+      layout
       className={cn("flex w-full items-center space-x-4 py-2", {
         "animate-pulse": isLoadingUpdate,
       })}
@@ -42,6 +44,6 @@ export function TaskCard({ task, onDelete }: TaskCardProps) {
       <button onClick={() => onDelete(task)}>
         <TrashIcon className="h-4 w-4" />
       </button>
-    </div>
+    </motion.div>
   );
 }

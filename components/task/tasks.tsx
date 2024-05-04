@@ -1,15 +1,13 @@
 "use client";
 
-import { InfoIcon } from "lucide-react";
-import { TaskCard } from "./task-card";
-import { DeleteTaskAlert } from "./delete-task-alert";
-import { Button } from "../ui/button";
 import { useTasks } from "@/hooks/task/use-tasks";
-import { TaskCardSkeleton } from "./task-card-skeleton";
 import type { Tasks } from "@lib/types";
-import { motion } from "framer-motion";
-import { CreateTask } from "./create-task";
+import { InfoIcon } from "lucide-react";
 import { Separator } from "../ui/separator";
+import { CreateTask } from "./create-task";
+import { DeleteTaskAlert } from "./delete-task-alert";
+import { TaskCard } from "./task-card";
+import { TaskCardSkeleton } from "./task-card-skeleton";
 
 export interface TaskProps {
   tasks: Tasks;
@@ -49,9 +47,11 @@ export function Tasks({ tasks, isLoadingTasks }: TaskProps) {
             </div>
           ) : tasks && tasks.length > 0 ? (
             tasks.map((task) => (
-              <motion.div layout key={task.id}>
-                <TaskCard task={task} onDelete={handleOpenDeleteAlert} />
-              </motion.div>
+              <TaskCard
+                key={task.id}
+                task={task}
+                onDelete={handleOpenDeleteAlert}
+              />
             ))
           ) : (
             <div className="flex flex-col items-center gap-4 rounded-md border py-4 text-muted-foreground">

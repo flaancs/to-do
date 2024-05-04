@@ -1,5 +1,5 @@
-import { TRPCError } from "@trpc/server";
 import { lucia } from "@packages/auth";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { protectedProcedure } from "../../trpc/base";
 

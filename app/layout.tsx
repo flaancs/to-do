@@ -1,14 +1,14 @@
-import { Inter as FontSans } from "next/font/google";
-import { cn } from "@lib/utils";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
-import { Logo } from "@/components/shared/logo";
-import type { Metadata } from "next";
-import "./globals.css";
-import { createApiCaller } from "@/packages/api";
-import { UserMenu } from "@/components/shared/user-menu";
-import NextTopLoader from "nextjs-toploader";
 import { ClientProviders } from "@/components/providers/client-providers";
+import { Logo } from "@/components/shared/logo";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { UserMenu } from "@/components/shared/user-menu";
+import { createApiCaller } from "@/packages/api";
+import { cn } from "@lib/utils";
+import type { Metadata } from "next";
+import { Inter as FontSans } from "next/font/google";
 import Link from "next/link";
+import NextTopLoader from "nextjs-toploader";
+import "./globals.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],
