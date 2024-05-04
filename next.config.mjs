@@ -4,9 +4,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "lh3.googleusercontent.com"
-      }
-    ]
+        hostname: "lh3.googleusercontent.com",
+      },
+    ],
   },
   async redirects() {
     return [
@@ -14,8 +14,8 @@ const nextConfig = {
         source: "/",
         destination: "/list",
         permanent: true,
-      }
-    ]
+      },
+    ];
   },
   webpack: (config) => {
     config.externals.push("@node-rs/argon2", "@node-rs/bcrypt");

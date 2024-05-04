@@ -67,7 +67,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Lucide icons](https://lucide.dev/guide/packages/lucide-react)
 - [Usehooks-ts](https://usehooks-ts.com/introduction)
 - [Nextjs TopLoader](https://www.npmjs.com/package/nextjs-toploader)
-- [Moment](https://momentjs.com/)
 - [Zod formik adapter](https://www.npmjs.com/package/zod-formik-adapter)
 - [TanstackQuery Optimistic Updates](https://tanstack.com/query/v4/docs/framework/react/guides/optimistic-updates)
 - [Lodash](https://lodash.com/)

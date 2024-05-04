@@ -50,7 +50,9 @@ export const login = protectedProcedure
           },
           data: {
             name,
-            ...(newPassword && { password: await hashPassword(newPassword) }),
+            ...(newPassword && {
+              password: await hashPassword(newPassword),
+            }),
           },
         });
 

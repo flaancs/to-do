@@ -87,7 +87,9 @@ export function UserContextProvider({
     const handleAuthEvent = async (event: MessageEvent<AuthEvent>) => {
       if (JSON.stringify(event.data.user) !== JSON.stringify(user)) {
         if (event.data.type === "logout") {
-          queryClient.removeQueries({ queryKey: getQueryKey(apiClient.auth) });
+          queryClient.removeQueries({
+            queryKey: getQueryKey(apiClient.auth),
+          });
           setUser(null);
           router.replace("/");
         } else {

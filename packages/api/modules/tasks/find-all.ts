@@ -15,7 +15,9 @@ export const findAll = protectedProcedure
           createdAt: "desc",
         },
       });
-      return tasks.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));;
+      return tasks.sort((a, b) =>
+        a.completed === b.completed ? 0 : a.completed ? 1 : -1,
+      );
     } catch (error: any) {
       console.error(error);
       throw new TRPCError({

@@ -55,7 +55,6 @@ model UserOauthAccount {
 model Task {
   id        String    @id @default(cuid())
   title     String
-  dueDate   DateTime?
   completed Boolean
   userId    String
   createdAt DateTime  @default(now())

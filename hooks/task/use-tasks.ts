@@ -5,7 +5,6 @@ import type { Task } from "@lib/types";
 
 export const useTasks = () => {
   const { toast } = useToast();
-  const [taskDialogOpen, setTaskDialogOpen] = useState(false);
   const [deleteTaskAlert, setDeleteTaskAlert] = useState(false);
   const [taskIdDelete, setTaskIdDelete] = useState<string | null>(null);
   const utils = apiClient.useUtils();
@@ -18,6 +17,7 @@ export const useTasks = () => {
       });
     },
     onError: () => {
+      utils.tasks.findAll.refetch();
       toast({
         title: "An error occurred",
         description: "An error occurred while deleting the task",
@@ -38,10 +38,6 @@ export const useTasks = () => {
     setDeleteTaskAlert(true);
   };
 
-  const handleOpenTaskDialog = () => {
-    setTaskDialogOpen(true);
-  };
-
   const handleDeleteTask = async () => {
     if (taskIdDelete) {
       await deleteTaskMutation.mutateAsync({ id: taskIdDelete });
@@ -50,18 +46,10 @@ export const useTasks = () => {
     }
   };
 
-  const handleTaskCreatedOrUpdated = () => {
-    setTaskDialogOpen(false);
-  };
-
   return {
-    taskDialogOpen,
-    setTaskDialogOpen,
     deleteTaskAlert,
     setDeleteTaskAlert,
     handleOpenDeleteAlert,
-    handleOpenTaskDialog,
     handleDeleteTask,
-    handleTaskCreatedOrUpdated,
   };
 };

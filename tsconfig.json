@@ -21,7 +21,7 @@
       "@/*": ["./*"],
       "@packages/*": ["./packages/*"],
       "@packages/db": ["./prisma/index.ts"],
-      "@lib/*": ["./lib/*"],
+      "@lib/*": ["./lib/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
