@@ -10,10 +10,6 @@ export const useCreateTask = () => {
 
   const createTaskMutation = apiClient.tasks.create.useMutation({
     onSuccess: (data) => {
-      toast({
-        title: "Task created",
-        description: "Task has been created successfully",
-      });
       utils.tasks.findAll.setData(undefined, (oldTasks) => {
         const newTasks =
           oldTasks?.map((task) => {

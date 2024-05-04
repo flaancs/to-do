@@ -15,12 +15,6 @@ export const useTaskCard = ({ task }: useTaskCardProps) => {
   const utils = apiClient.useUtils();
 
   const updateTaskMutation = apiClient.tasks.update.useMutation({
-    onSuccess: () => {
-      toast({
-        title: "Task updated",
-        description: "Task has been updated successfully",
-      });
-    },
     onError: () => {
       utils.tasks.findAll.refetch();
       toast({

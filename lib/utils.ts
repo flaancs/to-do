@@ -10,9 +10,8 @@ export const sortTasks = (tasks: Tasks) => {
   if (!tasks) return [];
   return (
     tasks
-      .sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1))
       .sort((a, b) =>
-        new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1,
+        a.completed === b.completed ? 0 : a.completed ? 1 : -1,
       ) || []
   );
 };

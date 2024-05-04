@@ -11,12 +11,6 @@ export const useTasks = () => {
   const utils = apiClient.useUtils();
 
   const deleteTaskMutation = apiClient.tasks.deleteTask.useMutation({
-    onSuccess: () => {
-      toast({
-        title: "Task deleted",
-        description: "Task has been deleted successfully",
-      });
-    },
     onError: () => {
       utils.tasks.findAll.refetch();
       toast({

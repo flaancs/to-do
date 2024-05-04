@@ -30,13 +30,11 @@ export function Tasks({ tasks, isLoadingTasks }: TaskProps) {
         onDelete={handleDeleteTask}
       />
       <div className="w-full space-y-2">
-        {tasks && (
           <div>
             <h2 className="mb-2 text-xl font-bold">Create todo</h2>
             <CreateTask />
             <Separator className="my-4" />
           </div>
-        )}
         <div className="h-96 space-y-2 overflow-y-scroll">
           {isLoadingTasks ? (
             <div className="space-y-6">
@@ -59,9 +57,6 @@ export function Tasks({ tasks, isLoadingTasks }: TaskProps) {
               <div className="text-center">
                 <h1 className="text-lg font-semibold">No tasks found</h1>
                 <p className="text-sm">Start by adding a task</p>
-              </div>
-              <div>
-                <CreateTask />
               </div>
             </div>
           )}
