@@ -59,6 +59,7 @@ export function UserContextProvider({
     const logout = async () => {
         await logoutMutation.mutateAsync();
         queryClient.removeQueries({ queryKey: getQueryKey(apiClient.auth) });
+        reloadUser();
         setUser(null);
         authBroadcastChannel.postMessage({
             type: "logout",
