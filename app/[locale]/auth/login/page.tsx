@@ -1,15 +1,17 @@
 import { LoginForm } from "@components/login/login-form";
 import { GoogleButton } from "@components/shared/google-button";
 import { Separator } from "@components/ui/separator";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
-export default function Login() {
+export default async function Login() {
+    const t = await getTranslations();
     return (
         <div className="mx-auto w-full max-w-sm space-y-6">
             <div className="space-y-2 text-center">
-                <h1 className="text-3xl font-bold">Login</h1>
+                <h1 className="text-3xl font-bold">{t("login.title")}</h1>
                 <p className="text-gray-500 dark:text-gray-400">
-                    Enter your email and password to access your account
+                    {t("login.description")}
                 </p>
             </div>
             <LoginForm />
@@ -18,11 +20,11 @@ export default function Login() {
                     href="/auth/signup"
                     className="text-sm underline-offset-2 hover:underline"
                 >
-                    Don&apos;t have an account? Sign up
+                    {t("login.signup")}
                 </Link>
             </div>
             <Separator className="my-8" />
-            <GoogleButton action="Sign in" />
+            <GoogleButton action={t("login.submit")} />
         </div>
     );
 }

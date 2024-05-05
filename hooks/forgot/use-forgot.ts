@@ -1,25 +1,34 @@
 import { apiClient } from "@lib/api-client";
-import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { useMemo, useState } from "react";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-const ForgotPasswordSchema = z.object({
-    email: z
-        .string({
-            required_error: "Email is required",
-        })
-        .email("Invalid email")
-        .max(255),
-});
-
-const forgotPasswordFormValidationSchema =
-    toFormikValidationSchema(ForgotPasswordSchema);
-
 export const useForgot = () => {
+    const t = useTranslations();
+    const [sent, setSent] = useState(false);
+
     const forgotPasswordMutation = apiClient.auth.forgot.useMutation({
         onSettled: () => setSent(true),
     });
-    const [sent, setSent] = useState(false);
+
+    const ForgotPasswordSchema = useMemo(
+        () =>
+            z.object({
+                email: z
+                    .string({
+                        required_error: t("fields.email.required"),
+                    })
+                    .email(t("fields.email.invalid"))
+                    .max(255, t("fields.email.maxLength")),
+            }),
+        [t],
+    );
+
+    const forgotPasswordFormValidationSchema = useMemo(
+        () => toFormikValidationSchema(ForgotPasswordSchema),
+        [ForgotPasswordSchema],
+    );
 
     const handleSubmit = async (values: { email: string }) => {
         await forgotPasswordMutation.mutateAsync({

@@ -1,0 +1,142 @@
+{
+    "site": {
+        "language": "Idioma",
+        "description": "Una aplicación simple de tareas creada con Next.js y TypeScript.",
+        "github": "Ver código en <strong>GitHub</strong>",
+        "error": {
+            "title": "Algo salió mal",
+            "message": "Ocurrió un error al cargar la página. Por favor, intenta de nuevo."
+        },
+        "notFound": {
+            "title": "Página no encontrada",
+            "message": "La página que buscas no existe."
+        }
+    },
+    "theme": {
+        "toggle": "Cambiar tema",
+        "light": "Claro",
+        "dark": "Oscuro",
+        "system": "Sistema"
+    },
+    "common": {
+        "cancel": "Cancelar",
+        "error": "Ocurrió un error",
+        "goToHome": "Ir al inicio",
+        "withGoogle": "con Google",
+        "required": "Requerido"
+    },
+    "fields": {
+        "email": {
+            "label": "Correo electrónico",
+            "placeholder": "Ingresa tu correo electrónico",
+            "required": "El correo electrónico es requerido",
+            "invalid": "El correo electrónico no es válido",
+            "maxLength": "El correo electrónico no puede tener más de 255 caracteres"
+        },
+        "name": {
+            "label": "Nombre",
+            "placeholder": "Ingresa tu nombre",
+            "required": "El nombre es requerido",
+            "minLength": "El nombre debe tener al menos 3 caracteres",
+            "maxLength": "El nombre no puede tener más de 255 caracteres"
+        },
+        "password": {
+            "label": "Contraseña",
+            "placeholder": "Ingresa tu contraseña",
+            "required": "La contraseña es requerida",
+            "minLength": "La contraseña debe tener al menos 8 caracteres",
+            "maxLength": "La contraseña no puede tener más de 255 caracteres",
+            "showPassword": "Mostrar contraseña",
+            "hidePassword": "Ocultar contraseña"
+        },
+        "passwordConfirm": {
+            "label": "Confirmar Contraseña",
+            "placeholder": "Confirma tu contraseña",
+            "required": "La confirmación de la contraseña es requerida",
+            "mismatch": "Las contraseñas no coinciden"
+        }
+    },
+    "login": {
+        "title": "Iniciar sesión",
+        "description": "Ingresa tu correo electrónico y contraseña para acceder a tu cuenta",
+        "signup": "¿No tienes una cuenta? Regístrate",
+        "forgot": "¿Olvidaste tu contraseña?",
+        "submit": "Iniciar sesión",
+        "notifications": {
+            "error": {
+                "title": "Correo electrónico o contraseña inválidos",
+                "message": "Por favor, verifica tu correo y contraseña e intenta de nuevo."
+            }
+        }
+    },
+    "signup": {
+        "title": "Registrarse",
+        "description": "Ingresa tu información para crear una cuenta",
+        "login": "¿Ya tienes una cuenta? Inicia sesión",
+        "submit": "Registrarse",
+        "goLogin": "Ir a iniciar sesión"
+    },
+    "forgot": {
+        "title": "Recuperar Contraseña",
+        "description": "Ingresa tu correo electrónico para restablecer tu contraseña.",
+        "sent": "Si existe una cuenta con ese correo electrónico, te enviaremos un correo con instrucciones para restablecer tu contraseña.",
+        "submit": "Enviar correo de restablecimiento"
+    },
+    "recovery": {
+        "title": "Crear nueva contraseña",
+        "description": "Ingresa tu nueva contraseña a continuación.",
+        "submit": "Restablecer contraseña",
+        "notifications": {
+            "success": {
+                "title": "Contraseña actualizada",
+                "message": "Tu contraseña ha sido actualizada exitosamente"
+            }
+        }
+    },
+    "todos": {
+        "empty": {
+            "title": "No se encontraron tareas",
+            "message": "Comienza añadiendo una tarea"
+        },
+        "delete": {
+            "tooltip": "Eliminar tarea",
+            "title": "¿Estás seguro?",
+            "message": "Esto eliminará permanentemente la tarea.",
+            "confirm": "Eliminar",
+            "notifications": {
+                "error": "Ocurrió un error al eliminar la tarea. Por favor, intenta de nuevo."
+            }
+        },
+        "create": {
+            "title": "Crear tarea",
+            "placeholder": "Comprar víveres",
+            "submit": "Agregar tarea",
+            "notifications": {
+                "error": "Ocurrió un error al crear la tarea. Por favor, intenta de nuevo."
+            }
+        },
+        "update": {
+            "tooltip": "Editar tarea",
+            "notifications": {
+                "error": "Ocurrió un error al actualizar la tarea. Por favor, intenta de nuevo."
+            }
+        }
+    },
+    "user": {
+        "logout": "Cerrar sesión",
+        "update": {
+            "title": "Actualizar perfil",
+            "submit": "Actualizar",
+            "notifications": {
+                "success": {
+                    "title": "Perfil actualizado",
+                    "message": "Tu perfil ha sido actualizado exitosamente"
+                },
+                "error": {
+                    "title": "Ocurrió un error",
+                    "message": "Ocurrió un error al actualizar tu perfil. Por favor, intenta de nuevo."
+                }
+            }
+        }
+    }
+}

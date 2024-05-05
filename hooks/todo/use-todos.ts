@@ -2,9 +2,11 @@ import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
 import type { Todo } from "@lib/types";
 import { sortTodos } from "@lib/utils";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export const useTodos = () => {
+    const t = useTranslations();
     const { toast } = useToast();
     const [deleteTodoAlert, setDeleteTodoAlert] = useState(false);
     const [todoIdDelete, setTodoIdDelete] = useState<string | null>(null);
@@ -14,8 +16,8 @@ export const useTodos = () => {
         onError: () => {
             utils.todos.findAll.refetch();
             toast({
-                title: "An error occurred",
-                description: "An error occurred while deleting the todo please try again.",
+                title: t("common.error"),
+                description: t("todos.delete.notifications.error"),
             });
         },
         onMutate: async (deletedTodo) => {

@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { SVGProps } from "react";
 import { Button } from "../ui/button";
@@ -6,12 +7,13 @@ export interface GoogleButtonProps {
     action: string;
 }
 
-export function GoogleButton({ action }: GoogleButtonProps) {
+export async function GoogleButton({ action }: GoogleButtonProps) {
+    const t = await getTranslations();
     return (
         <Button asChild className="w-full" variant="outline" type="button">
             <Link href="/api/oauth/google">
                 <ChromeIcon className="mr-2 h-5 w-5" />
-                {action} with Google
+                {action} {t("common.withGoogle")}
             </Link>
         </Button>
     );

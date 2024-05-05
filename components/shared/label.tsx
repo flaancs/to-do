@@ -1,4 +1,6 @@
+"use client";
 import { Asterisk } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Label as PrimitiveLabel } from "../ui/label";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
@@ -10,6 +12,8 @@ export interface LabelProps {
 }
 
 export function Label({ title, htmlFor, required, requiredText }: LabelProps) {
+    const t = useTranslations();
+
     return (
         <PrimitiveLabel htmlFor={htmlFor} className="flex items-center gap-1">
             <span>{title}</span>
@@ -22,7 +26,7 @@ export function Label({ title, htmlFor, required, requiredText }: LabelProps) {
                         </TooltipTrigger>
                     </Tooltip>
                     <span className="text-xs text-red-600 lg:hidden">
-                        required
+                        {t("common.required")}
                     </span>
                 </>
             )}

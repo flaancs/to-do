@@ -1,10 +1,10 @@
-"use client";
 import { useTodoCard } from "@hooks/todo/use-todo-card";
 import type { Todo } from "@lib/types";
 import { cn } from "@lib/utils";
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
 import { motion } from "framer-motion";
 import { TrashIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 import { Tooltip, TooltipContent } from "../ui/tooltip";
@@ -15,6 +15,7 @@ export interface TodoCardProps {
 }
 
 export function TodoCard({ todo, onDelete }: TodoCardProps) {
+    const t = useTranslations();
     const { isLoadingUpdate, handleUpdateTodo, handleDebouncedChangeTitle } =
         useTodoCard({ todo });
 
@@ -40,11 +41,11 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
                 })}
                 defaultValue={todo.title}
                 disabled={isLoadingUpdate || todo.completed}
-                placeholder="Enter todo title"
+                placeholder={t("todos.create.placeholder")}
                 onChange={handleDebouncedChangeTitle}
             />
             <Tooltip>
-                <TooltipContent>Delete todo</TooltipContent>
+                <TooltipContent>{t("todos.delete.tooltip")}</TooltipContent>
                 <TooltipTrigger asChild>
                     <button
                         onClick={() => onDelete(todo)}

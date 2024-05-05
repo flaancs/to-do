@@ -1,9 +1,10 @@
 export interface FieldErrorProps {
+    touched?: boolean;
     error: string | undefined | null;
 }
 
-export function FieldError({ error }: FieldErrorProps) {
-    if (!error) {
+export function FieldError({ touched, error }: FieldErrorProps) {
+    if (!error || !touched) {
         return null;
     }
 

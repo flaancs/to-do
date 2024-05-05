@@ -1,4 +1,3 @@
-"use client";
 import { Label } from "@components/shared/label";
 import { Button } from "@components/ui/button";
 import {
@@ -11,6 +10,7 @@ import { Input } from "@components/ui/input";
 import { useUserDialog } from "@hooks/user/use-user-dialog";
 import { ApiOutput } from "@packages/api";
 import { Form, Formik } from "formik";
+import { useTranslations } from "next-intl";
 import { FieldError } from "../shared/field-error";
 
 export interface UserDialogProps {
@@ -26,6 +26,7 @@ export function UserDialog({
     onUserUpdated,
     onOpenChange,
 }: UserDialogProps) {
+    const t = useTranslations();
     const { handleSubmit, updateUserMutation, updateUserFormValidationSchema } =
         useUserDialog({ user, onUserUpdated });
 
@@ -33,7 +34,7 @@ export function UserDialog({
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Update profile</DialogTitle>
+                    <DialogTitle>{t("user.update.title")}</DialogTitle>
                 </DialogHeader>
                 <Formik
                     enableReinitialize
@@ -45,38 +46,50 @@ export function UserDialog({
                     validationSchema={updateUserFormValidationSchema}
                     onSubmit={handleSubmit}
                 >
-                    {({ handleChange, values, errors }) => (
+                    {({ handleChange, values, errors, touched }) => (
                         <Form className="space-y-4">
                             <div className="space-y-2">
                                 <Label
-                                    title="Name"
+                                    title={t("fields.name.label")}
                                     required
-                                    requiredText="Name is required"
+                                    requiredText={t("fields.name.required")}
                                     htmlFor="name"
                                 />
                                 <Input
                                     id="name"
-                                    placeholder="John Doe"
+                                    placeholder={t("fields.name.placeholder")}
                                     onChange={handleChange}
                                     value={values.name}
                                     name="name"
                                 />
-                                <FieldError error={errors.name} />
+                                <FieldError
+                                    error={errors.name}
+                                    touched={touched.name}
+                                />
                             </div>
                             <div className="space-y-2">
-                                <Label title="Password" htmlFor="password" />
+                                <Label
+                                    title={t("fields.password.label")}
+                                    htmlFor="password"
+                                />
                                 <Input
                                     id="password"
                                     type="password"
                                     onChange={handleChange}
                                     value={values.password}
+                                    placeholder={t(
+                                        "fields.password.placeholder",
+                                    )}
                                     name="password"
                                 />
-                                <FieldError error={errors.password} />
+                                <FieldError
+                                    error={errors.password}
+                                    touched={touched.password}
+                                />
                             </div>
                             <div className="space-y-2">
                                 <Label
-                                    title="Confirm password"
+                                    title={t("fields.passwordConfirm.label")}
                                     htmlFor="confirm-password"
                                 />
                                 <Input
@@ -85,8 +98,14 @@ export function UserDialog({
                                     onChange={handleChange}
                                     value={values.passwordConfirm}
                                     name="passwordConfirm"
+                                    placeholder={t(
+                                        "fields.passwordConfirm.placeholder",
+                                    )}
                                 />
-                                <FieldError error={errors.passwordConfirm} />
+                                <FieldError
+                                    error={errors.passwordConfirm}
+                                    touched={touched.passwordConfirm}
+                                />
                             </div>
                             <Button
                                 className="w-full"
@@ -94,7 +113,7 @@ export function UserDialog({
                                 loading={updateUserMutation.isPending}
                                 disabled={updateUserMutation.isPending}
                             >
-                                Update
+                                {t("user.update.submit")}
                             </Button>
                         </Form>
                     )}

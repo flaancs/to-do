@@ -1,24 +1,13 @@
 import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
 import { handleRedirect } from "@lib/utils";
+import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-const LoginSchema = z.object({
-    email: z
-        .string({
-            required_error: "Email is required",
-        })
-        .email("Invalid email")
-        .max(255),
-    password: z.string({
-        required_error: "Password is required",
-    }),
-});
-
-const loginFormSchema = toFormikValidationSchema(LoginSchema);
-
 export const useLogin = () => {
+    const t = useTranslations();
     const { toast } = useToast();
 
     const loginMutation = apiClient.auth.login.useMutation({
@@ -27,11 +16,32 @@ export const useLogin = () => {
         },
         onError: () => {
             toast({
-                title: "Invalid credentials",
-                description: "Please check your credentials and try again",
+                title: t("login.notifications.error.title"),
+                description: t("login.notifications.error.message"),
             });
         },
     });
+
+    const LoginSchema = useMemo(
+        () =>
+            z.object({
+                email: z
+                    .string({
+                        required_error: t("fields.email.required"),
+                    })
+                    .email(t("fields.email.invalid"))
+                    .max(255, t("fields.email.maxLength")),
+                password: z.string({
+                    required_error: t("fields.password.required"),
+                }),
+            }),
+        [t],
+    );
+
+    const loginFormSchema = useMemo(
+        () => toFormikValidationSchema(LoginSchema),
+        [LoginSchema],
+    );
 
     const handleSubmit = async (values: {
         email: string;

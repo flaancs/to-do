@@ -1,9 +1,142 @@
 {
     "site": {
-        "title": "Todo App",
-        "description": "A simple to-do app built with Next.js and TypeScript."
+        "language": "Language",
+        "description": "A simple to-do app built with Next.js and TypeScript.",
+        "github": "View source code on <strong>GitHub</strong>",
+        "error": {
+            "title": "Something went wrong",
+            "message": "An error occurred while loading the page. Please try again."
+        },
+        "notFound": {
+            "title": "Page not found",
+            "message": "The page you are looking for does not exist."
+        }
+    },
+    "theme": {
+        "toggle": "Toggle theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
+    "common": {
+        "cancel": "Cancel",
+        "error": "An error occurred",
+        "goToHome": "Go to home",
+        "withGoogle": "with Google",
+        "required": "Required"
+    },
+    "fields": {
+        "email": {
+            "label": "Email",
+            "placeholder": "Enter your email",
+            "required": "Email is required",
+            "invalid": "Email is invalid",
+            "maxLength": "Email must be less than 255 characters"
+        },
+        "name": {
+            "label": "Name",
+            "placeholder": "Enter your name",
+            "required": "Name is required",
+            "minLength": "Name must be at least 3 characters",
+            "maxLength": "Name must be less than 255 characters"
+        },
+        "password": {
+            "label": "Password",
+            "placeholder": "Enter your password",
+            "required": "Password is required",
+            "minLength": "Password must be at least 8 characters",
+            "maxLength": "Password must be less than 255 characters",
+            "showPassword": "Show password",
+            "hidePassword": "Hide password"
+        },
+        "passwordConfirm": {
+            "label": "Confirm Password",
+            "placeholder": "Confirm your password",
+            "required": "Password confirmation is required",
+            "mismatch": "Passwords do not match"
+        }
+    },
+    "login": {
+        "title": "Login",
+        "description": " Enter your email and password to access your account",
+        "signup": "Don't have an account? Sign up",
+        "forgot": "Forgot your password?",
+        "submit": "Sign in",
+        "notifications": {
+            "error": {
+                "title": "Invalid email or password",
+                "message": "Please check your email and password and try again."
+            }
+        }
+    },
+    "signup": {
+        "title": "Sign Up",
+        "description": "Enter your information to create an account",
+        "login": "Already have an account? Log in",
+        "submit": "Sign up",
+        "goLogin": "Go to login"
+    },
+    "forgot": {
+        "title": "Forgot Password",
+        "description": "Enter your email to reset your password.",
+        "sent": "If an account with that email exists, we sent you an email with instructions to reset your password.",
+        "submit": "Send Reset Email"
+    },
+    "recovery": {
+        "title": "Create new password",
+        "description": "Enter your new password below.",
+        "submit": "Reset Password",
+        "notifications": {
+            "success": {
+                "title": "Password updated",
+                "message": "Your password has been updated successfully"
+            }
+        }
     },
     "todos": {
-        "todos": "Todos"
+        "empty": {
+            "title": "No todos found",
+            "message": "Start by adding a todo"
+        },
+        "delete": {
+            "tooltip": "Delete todo",
+            "title": "Are you sure?",
+            "message": "This will permanently delete the todo.",
+            "confirm": "Delete",
+            "notifications": {
+                "error": "An error occurred while deleting the todo please try again."
+            }
+        },
+        "create": {
+            "title": "Create todo",
+            "placeholder": "Buy groceries",
+            "submit": "Add Todo",
+            "notifications": {
+                "error": "An error occurred while creating the todo please try again."
+            }
+        },
+        "update": {
+            "tooltip": "Edit todo",
+            "notifications": {
+                "error": "An error occurred while updating the todo please try again."
+            }
+        }
+    },
+    "user": {
+        "logout": "Logout",
+        "update": {
+            "title": "Update Profile",
+            "submit": "Update",
+            "notifications": {
+                "success": {
+                    "title": "Profile updated",
+                    "message": "Your profile has been updated successfully"
+                },
+                "error": {
+                    "title": "An error occurred",
+                    "message": "An error occurred while updating your profile. Please try again."
+                }
+            }
+        }
     }
 }

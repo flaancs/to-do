@@ -3,6 +3,7 @@
 import { useTodos } from "@hooks/todo/use-todos";
 import type { Todos } from "@lib/types";
 import { InfoIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Separator } from "../ui/separator";
 import { CreateTodo } from "./create-todo";
 import { DeleteTodoAlert } from "./delete-todo-alert";
@@ -15,6 +16,7 @@ export interface TodoProps {
 }
 
 export function Todos({ todos, isLoadingTodos }: TodoProps) {
+    const t = useTranslations();
     const {
         deleteTodoAlert,
         setDeleteTodoAlert,
@@ -31,7 +33,9 @@ export function Todos({ todos, isLoadingTodos }: TodoProps) {
             />
             <div className="w-full space-y-2">
                 <div>
-                    <h2 className="mb-2 text-xl font-bold">Create todo</h2>
+                    <h2 className="mb-2 text-xl font-bold">
+                        {t("todos.create.title")}
+                    </h2>
                     <CreateTodo />
                     <Separator className="my-4" />
                 </div>
@@ -56,10 +60,10 @@ export function Todos({ todos, isLoadingTodos }: TodoProps) {
                             <InfoIcon size={32} />
                             <div className="text-center">
                                 <h1 className="text-lg font-semibold">
-                                    No todos found
+                                    {t("todos.empty.title")}
                                 </h1>
                                 <p className="text-sm">
-                                    Start by adding a todo
+                                    {t("todos.empty.message")}
                                 </p>
                             </div>
                         </div>

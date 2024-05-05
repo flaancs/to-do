@@ -8,6 +8,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@components/ui/alert-dialog";
+import { useTranslations } from "next-intl";
 
 export interface DeleteTodoAlertProps {
     open: boolean;
@@ -20,19 +21,22 @@ export function DeleteTodoAlert({
     onOpenChange,
     onDelete,
 }: DeleteTodoAlertProps) {
+    const t = useTranslations();
     return (
         <AlertDialog open={open} onOpenChange={onOpenChange}>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                    <AlertDialogTitle>
+                        {t("todos.delete.title")}
+                    </AlertDialogTitle>
                     <AlertDialogDescription>
-                        This will permanently delete the todo.
+                        {t("todos.delete.message")}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
                     <AlertDialogAction onClick={onDelete}>
-                        Delete
+                        {t("todos.delete.confirm")}
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>

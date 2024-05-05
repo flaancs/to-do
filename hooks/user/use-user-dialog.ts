@@ -1,22 +1,10 @@
 import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
 import { ApiOutput } from "@packages/api";
+import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-
-const UpdateUserSchema = z
-    .object({
-        name: z.string().min(3).max(255),
-        password: z.string().min(8).max(255).optional(),
-        passwordConfirm: z.string().min(8).max(255).optional(),
-    })
-    .refine((data) => data.password === data.passwordConfirm, {
-        message: "Passwords do not match",
-        path: ["passwordConfirm"],
-    });
-
-const updateUserFormValidationSchema =
-    toFormikValidationSchema(UpdateUserSchema);
 
 export interface useUserDialogProps {
     user: ApiOutput["auth"]["user"];
@@ -24,23 +12,57 @@ export interface useUserDialogProps {
 }
 
 export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
+    const t = useTranslations();
     const { toast } = useToast();
 
     const updateUserMutation = apiClient.auth.update.useMutation({
         onSuccess: () => {
             toast({
-                title: "Profile updated",
-                description: "Your profile has been updated successfully.",
+                title: t("user.update.notifications.success.title"),
+                description: t("user.update.notifications.success.message"),
             });
             onUserUpdated();
         },
         onError: (error) => {
             toast({
-                title: "An error occurred",
+                title: t("common.error"),
                 description: error.message,
             });
         },
     });
+
+    const UpdateUserSchema = useMemo(
+        () =>
+            z
+                .object({
+                    name: z
+                        .string({
+                            message: t("fields.name.required"),
+                        })
+                        .min(3, t("fields.name.minLength"))
+                        .max(255, t("fields.name.maxLength")),
+                    password: z
+                        .string()
+                        .min(8, t("fields.password.minLength"))
+                        .max(255, t("fields.password.maxLength"))
+                        .optional(),
+                    passwordConfirm: z
+                        .string()
+                        .min(8, t("fields.password.minLength"))
+                        .max(255, t("fields.password.maxLength"))
+                        .optional(),
+                })
+                .refine((data) => data.password === data.passwordConfirm, {
+                    message: t("fields.passwordConfirm.mismatch"),
+                    path: ["passwordConfirm"],
+                }),
+        [t],
+    );
+
+    const updateUserFormValidationSchema = useMemo(
+        () => toFormikValidationSchema(UpdateUserSchema),
+        [UpdateUserSchema],
+    );
 
     const handleSubmit = async (values: {
         name: string;

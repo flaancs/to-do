@@ -1,9 +1,11 @@
 import { useToast } from "@components/ui/use-toast";
 import { apiClient } from "@lib/api-client";
 import { sortTodos } from "@lib/utils";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export const useCreateTodo = () => {
+    const t = useTranslations();
     const { toast } = useToast();
     const [titleInput, setTitleInput] = useState("");
     const utils = apiClient.useUtils();
@@ -24,8 +26,8 @@ export const useCreateTodo = () => {
         onError: () => {
             utils.todos.findAll.refetch();
             toast({
-                title: "An error occurred",
-                description: "Failed to create todo please try again",
+                title: t("common.error"),
+                description: t("todos.create.notifications.error"),
             });
         },
         onMutate: async (newTodo) => {

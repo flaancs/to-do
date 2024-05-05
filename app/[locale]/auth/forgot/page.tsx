@@ -1,13 +1,15 @@
 "use client";
+import { Label } from "@components/shared/label";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
-import { Label } from "@components/ui/label";
 import { useForgot } from "@hooks/forgot/use-forgot";
 import { Form, Formik } from "formik";
 import { SendIcon, UndoIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function Forgot() {
+    const t = useTranslations();
     const {
         sent,
         handleSubmit,
@@ -23,18 +25,17 @@ export default function Forgot() {
                     <SendIcon className="w-16 h-16 mx-auto" />
                 ) : (
                     <>
-                        <h1 className="text-3xl font-bold">Forgot Password</h1>
+                        <h1 className="text-3xl font-bold">
+                            {t("forgot.title")}
+                        </h1>
                         <p className="text-gray-500 dark:text-gray-400">
-                            Enter your email to reset your password.
+                            {t("forgot.description")}
                         </p>
                     </>
                 )}
             </div>
             {sent ? (
-                <p>
-                    If an account with that email exists, we sent you an email
-                    with instructions to reset your password.
-                </p>
+                <p className="text-center">{t("forgot.sent")}</p>
             ) : (
                 <Formik
                     initialValues={{
@@ -46,14 +47,19 @@ export default function Forgot() {
                     {({ handleChange, values }) => (
                         <Form className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
+                                <Label
+                                    required
+                                    requiredText={t("fields.email.required")}
+                                    htmlFor="email"
+                                    title={t("fields.email.label")}
+                                />
                                 <Input
                                     id="email"
                                     name="email"
                                     onChange={handleChange}
                                     value={values.email}
                                     onKeyDown={handleKeyDown}
-                                    placeholder="email@example.com"
+                                    placeholder={t("fields.email.placeholder")}
                                     type="email"
                                 />
                             </div>
@@ -63,8 +69,13 @@ export default function Forgot() {
                                 loading={forgotPasswordMutation.isPending}
                                 disabled={forgotPasswordMutation.isPending}
                             >
-                                Reset Password
+                                {t("forgot.submit")}
                             </Button>
+                            <div className="flex justify-center my-1">
+                                <Link href="/auth/login">
+                                    {t("signup.goLogin")}
+                                </Link>
+                            </div>
                         </Form>
                     )}
                 </Formik>
@@ -73,7 +84,8 @@ export default function Forgot() {
                 <div className="flex justify-center">
                     <Button asChild className="mt-4">
                         <Link href="/auth/login">
-                            <UndoIcon className="mr-2 h-4 w-4" /> Go to login
+                            <UndoIcon className="mr-2 h-4 w-4" />{" "}
+                            {t("signup.goLogin")}
                         </Link>
                     </Button>
                 </div>

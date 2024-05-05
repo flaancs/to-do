@@ -3,6 +3,7 @@ import { apiClient } from "@lib/api-client";
 import { Todo } from "@lib/types";
 import { sortTodos } from "@lib/utils";
 import { debounce } from "lodash";
+import { useTranslations } from "next-intl";
 import { ChangeEvent, useCallback, useMemo } from "react";
 
 export interface useTodoCardProps {
@@ -10,6 +11,7 @@ export interface useTodoCardProps {
 }
 
 export const useTodoCard = ({ todo }: useTodoCardProps) => {
+    const t = useTranslations();
     const { toast } = useToast();
 
     const utils = apiClient.useUtils();
@@ -18,8 +20,8 @@ export const useTodoCard = ({ todo }: useTodoCardProps) => {
         onError: () => {
             utils.todos.findAll.refetch();
             toast({
-                title: "An error occurred",
-                description: "An error occurred while updating the todo please try again.",
+                title: t("common.error"),
+                description: t("todos.update.notifications.error"),
             });
         },
         onMutate: async (updatedTodo) => {

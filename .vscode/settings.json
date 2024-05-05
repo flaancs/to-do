@@ -1,0 +1,23 @@
+{
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+        "source.sortImports": "explicit"
+    },
+    "tailwindCSS.experimental.classRegex": [
+        ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ],
+    "typescript.preferences.importModuleSpecifier": "shortest",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "eslint.workingDirectories": [
+        "packages/*",
+        "app/*",
+        "lib/*",
+        "hooks/*",
+        "context/*",
+        "components/*"
+    ],
+    "i18n-ally.localesPaths": ["locales"],
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.enabledFrameworks": ["next-intl"]
+}

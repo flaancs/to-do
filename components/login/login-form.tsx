@@ -4,10 +4,12 @@ import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { useLogin } from "@hooks/login/use-login";
 import { Form, Formik } from "formik";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { FieldError } from "../shared/field-error";
 
 export function LoginForm() {
+    const t = useTranslations();
     const { handleSubmit, loginMutation, loginFormSchema } = useLogin();
 
     return (
@@ -19,13 +21,13 @@ export function LoginForm() {
             validationSchema={loginFormSchema}
             onSubmit={handleSubmit}
         >
-            {({ handleChange, values, errors }) => (
+            {({ handleChange, values, errors, touched }) => (
                 <Form className="space-y-4">
                     <div className="space-y-2">
                         <Label
-                            title="Email"
+                            title={t("fields.email.label")}
                             required
-                            requiredText="Email is required"
+                            requiredText={t("fields.email.required")}
                             htmlFor="email"
                         />
                         <Input
@@ -33,33 +35,40 @@ export function LoginForm() {
                             name="email"
                             onChange={handleChange}
                             value={values.email}
-                            placeholder="email@example.com"
+                            placeholder={t("fields.email.placeholder")}
                             type="email"
                         />
-                        <FieldError error={errors.email} />
+                        <FieldError
+                            error={errors.email}
+                            touched={touched.email}
+                        />
                     </div>
                     <div className="space-y-2">
                         <Label
-                            title="Password"
+                            title={t("fields.password.label")}
                             required
-                            requiredText="Password is required"
+                            requiredText={t("fields.password.required")}
                             htmlFor="password"
                         />
                         <Input
                             id="password"
                             type="password"
                             name="password"
+                            placeholder={t("fields.password.placeholder")}
                             onChange={handleChange}
                             value={values.password}
                         />
-                        <FieldError error={errors.password} />
+                        <FieldError
+                            error={errors.password}
+                            touched={touched.password}
+                        />
                     </div>
                     <div className="flex justify-end">
                         <Link
                             href="/auth/forgot"
                             className="text-sm underline-offset-2 hover:underline"
                         >
-                            Forgot your password?
+                            {t("login.forgot")}
                         </Link>
                     </div>
                     <Button
@@ -68,7 +77,7 @@ export function LoginForm() {
                         loading={loginMutation.isPending}
                         disabled={loginMutation.isPending}
                     >
-                        Sign In
+                        {t("login.submit")}
                     </Button>
                 </Form>
             )}

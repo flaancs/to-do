@@ -1,13 +1,17 @@
+"use client";
 import * as React from "react";
 
 import { cn } from "@lib/utils";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 export interface InputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, type, ...props }, ref) => {
+        const t = useTranslations();
         const [passwordVisible, setPasswordVisible] = React.useState(false);
 
         return (
@@ -28,17 +32,28 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     {...props}
                 />
                 {type === "password" && (
-                    <button
-                        type="button"
-                        className="absolute top-2.5 right-2.5"
-                        onClick={() => setPasswordVisible((prev) => !prev)}
-                    >
-                        {passwordVisible ? (
-                            <EyeOffIcon className="h-4 w-4" />
-                        ) : (
-                            <EyeIcon className="h-4 w-4" />
-                        )}
-                    </button>
+                    <Tooltip>
+                        <TooltipContent>
+                            {passwordVisible
+                                ? t("fields.password.hidePassword")
+                                : t("fields.password.showPassword")}
+                        </TooltipContent>
+                        <TooltipTrigger asChild>
+                            <button
+                                type="button"
+                                className="absolute top-2.5 right-2.5"
+                                onClick={() =>
+                                    setPasswordVisible((prev) => !prev)
+                                }
+                            >
+                                {passwordVisible ? (
+                                    <EyeOffIcon className="h-4 w-4" />
+                                ) : (
+                                    <EyeIcon className="h-4 w-4" />
+                                )}
+                            </button>
+                        </TooltipTrigger>
+                    </Tooltip>
                 )}
             </div>
         );
