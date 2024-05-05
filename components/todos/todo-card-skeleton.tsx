@@ -4,12 +4,13 @@ import { Skeleton } from "../ui/skeleton";
 
 export function TodoCardSkeleton() {
     return (
-        <div className="flex w-full animate-pulse items-center gap-4">
-            <Checkbox disabled />
-            <Skeleton className="w-full h-8" />
-            <button disabled className="opacity-50">
-                <TrashIcon className="h-4 w-4" />
-            </button>
-        </div>
+        <Skeleton className="w-full h-10">
+            <div className="w-full h-full flex items-center justify-between px-2">
+                <Checkbox disabled />
+                <button disabled className="opacity-50">
+                    <TrashIcon className="h-4 w-4" />
+                </button>
+            </div>
+        </Skeleton>
     );
 }

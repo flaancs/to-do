@@ -52,7 +52,7 @@ export function Todos({ todos, isLoadingTodos }: TodoProps) {
                 </div>
                 <div className="max-h-96 space-y-2 overflow-y-scroll">
                     {isLoadingTodos ? (
-                        <div className="space-y-6">
+                        <div className="space-y-2">
                             <TodoCardSkeleton />
                             <TodoCardSkeleton />
                             <TodoCardSkeleton />
