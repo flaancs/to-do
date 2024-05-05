@@ -32,7 +32,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
                 onCheckedChange={(completed: boolean) =>
                     handleUpdateTodo({ completed })
                 }
-                disabled={isLoadingUpdate}
+                disabled={isLoadingUpdate || todo.id === "created-todo"}
             />
             <Input
                 name="title"
@@ -40,7 +40,11 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
                     "line-through": todo.completed,
                 })}
                 defaultValue={todo.title}
-                disabled={isLoadingUpdate || todo.completed}
+                disabled={
+                    isLoadingUpdate ||
+                    todo.completed ||
+                    todo.id === "created-todo"
+                }
                 placeholder={t("todos.create.placeholder")}
                 onChange={handleDebouncedChangeTitle}
             />
