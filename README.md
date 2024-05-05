@@ -21,6 +21,8 @@ pnpm install
 pnpm dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 #### Running tests
 
 ```bash
@@ -54,8 +56,6 @@ pnpm studio
 ```bash
 pnpm email
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## References
 
