@@ -37,7 +37,7 @@ export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
                 .object({
                     name: z
                         .string({
-                            message: t("fields.name.required"),
+                            required_error: t("fields.name.required"),
                         })
                         .min(3, t("fields.name.minLength"))
                         .max(255, t("fields.name.maxLength")),
