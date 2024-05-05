@@ -62,7 +62,7 @@ export const useCreateTodo = () => {
         titleInput,
         setTitleInput,
         handleKeyDown,
-        handleCreateTodo, 
+        handleCreateTodo,
         createTodoMutation,
     };
 };

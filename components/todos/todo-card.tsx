@@ -22,9 +22,12 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
     return (
         <motion.div
             layout
-            className={cn("flex w-full items-center gap-2 px-2 border rounded-md", {
-                "animate-pulse": isLoadingUpdate,
-            })}
+            className={cn(
+                "flex w-full items-center gap-2 px-2 border rounded-md",
+                {
+                    "animate-pulse": isLoadingUpdate,
+                },
+            )}
         >
             <Checkbox
                 id={todo.id}

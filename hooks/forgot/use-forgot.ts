@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { apiClient } from "@lib/api-client";
 import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 

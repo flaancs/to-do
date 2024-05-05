@@ -1,5 +1,3 @@
-import { authConfig } from "@packages/auth";
-import NextAuth from "next-auth";
 import createMiddleware from "next-intl/middleware";
 import { NextRequest } from "next/server";
 
@@ -14,5 +12,5 @@ export default function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+    matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
 };
