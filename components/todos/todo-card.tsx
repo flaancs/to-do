@@ -22,7 +22,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
     return (
         <motion.div
             layout
-            className={cn("flex w-full items-center space-x-4 py-2", {
+            className={cn("flex w-full items-center gap-2 px-2 border rounded-md", {
                 "animate-pulse": isLoadingUpdate,
             })}
         >
@@ -36,7 +36,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
             />
             <Input
                 name="title"
-                className={cn({
+                className={cn("border-0", {
                     "line-through": todo.completed,
                 })}
                 defaultValue={todo.title}

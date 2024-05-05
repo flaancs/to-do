@@ -1,6 +1,6 @@
 "use client";
 import { useCreateTodo } from "@hooks/todo/use-create-todo";
-import { CheckIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Input } from "../ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -16,7 +16,7 @@ export function CreateTodo() {
     } = useCreateTodo();
 
     return (
-        <div className="flex w-full items-center gap-4">
+        <div className="flex w-full items-center gap-4 relative">
             <Input
                 value={titleInput}
                 onChange={(e) => setTitleInput(e.currentTarget.value)}
@@ -28,11 +28,11 @@ export function CreateTodo() {
                 <TooltipContent>{t("todos.create.submit")}</TooltipContent>
                 <TooltipTrigger asChild>
                     <button
-                        className="disabled:cursor-not-allowed disabled:opacity-50"
+                        className="disabled:cursor-not-allowed disabled:opacity-50 absolute top-2.5 right-2.5"
                         onClick={handleCreateTodo}
                         disabled={!titleInput || createTodoMutation.isPending}
                     >
-                        <CheckIcon className="h-4 w-4" />
+                        <ArrowRightIcon className="h-4 w-4" />
                     </button>
                 </TooltipTrigger>
             </Tooltip>
