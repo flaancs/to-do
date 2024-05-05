@@ -17,9 +17,9 @@ import {
 import { useSettingsMenu } from "@hooks/shared/use-settings-menu";
 import {
     LanguagesIcon,
+    LayoutDashboard,
     LogOutIcon,
     MoonIcon,
-    SettingsIcon,
     SunIcon,
     UserIcon,
 } from "lucide-react";
@@ -61,7 +61,7 @@ export function SettingsMenu() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button size="icon" variant="secondary">
-                        <SettingsIcon className="w-5 h-5" />
+                        <LayoutDashboard className="w-5 h-5" />
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="min-w-56">
