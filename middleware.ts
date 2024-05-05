@@ -9,13 +9,9 @@ const intlMiddleware = createMiddleware({
     localePrefix: "never",
 });
 
-const withAuth = NextAuth(authConfig).auth;
-
-async function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
     return intlMiddleware(req);
 }
-
-export default withAuth(middleware);
 
 export const config = {
     matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
