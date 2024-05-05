@@ -22,13 +22,10 @@ export const forgot = publicProcedure
             const user = await db.user.findFirst({
                 where: {
                     email,
-                    password: {
-                        not: null,
-                    },
                 },
             });
 
-            if (user) {
+            if (user && user.password !== null) {
                 const token = generateToken(32);
                 const recoveryToken = await db.userRecoveryToken.create({
                     data: {
