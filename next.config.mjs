@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
@@ -27,4 +28,19 @@ const nextConfig = {
     },
 };
 
-export default withNextIntl(nextConfig);
+export default withSentryConfig(
+    withNextIntl(nextConfig),
+    {
+        silent: true,
+        org: "todo-5i",
+        project: "todo",
+    },
+    {
+        widenClientFileUpload: true,
+        transpileClientSDK: true,
+        hideSourceMaps: true,
+        disableLogger: true,
+        automaticVercelMonitors: true,
+        automaticVercelMonitors: true,
+    },
+);
