@@ -98,6 +98,14 @@
             "title": "No todos found",
             "message": "Start by adding a todo"
         },
+        "deleteCompleted": {
+            "title": "Delete completed todos",
+            "message": "This will permanently delete all completed todos.",
+            "confirm": "Delete",
+            "notifications": {
+                "error": "An error occurred while deleting the completed todos please try again."
+            }
+        },
         "delete": {
             "tooltip": "Delete todo",
             "title": "Are you sure?",

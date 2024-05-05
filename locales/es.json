@@ -98,6 +98,14 @@
             "title": "No se encontraron tareas",
             "message": "Comienza añadiendo una tarea"
         },
+        "deleteCompleted": {
+            "title": "Eliminar todas las tareas completadas",
+            "message": "Esto eliminará permanentemente todas las tareas completadas.",
+            "confirm": "Eliminar",
+            "notifications": {
+                "error": "Ocurrió un error al eliminar las tareas completadas. Por favor, intenta de nuevo."
+            }
+        },
         "delete": {
             "tooltip": "Eliminar tarea",
             "title": "¿Estás seguro?",
