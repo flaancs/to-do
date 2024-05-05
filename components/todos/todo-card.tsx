@@ -52,6 +52,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
                 <TooltipContent>{t("todos.delete.tooltip")}</TooltipContent>
                 <TooltipTrigger asChild>
                     <button
+                        className="disabled:cursor-not-allowed disabled:opacity-50"
                         onClick={() => onDelete(todo)}
                         disabled={todo.id === "created-todo"}
                     >

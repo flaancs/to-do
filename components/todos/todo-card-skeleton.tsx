@@ -7,7 +7,7 @@ export function TodoCardSkeleton() {
         <div className="flex w-full animate-pulse items-center gap-4">
             <Checkbox disabled />
             <Skeleton className="w-full h-8" />
-            <button disabled>
+            <button disabled className="opacity-50">
                 <TrashIcon className="h-4 w-4" />
             </button>
         </div>
