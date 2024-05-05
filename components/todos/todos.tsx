@@ -54,9 +54,6 @@ export function Todos({ todos, isLoadingTodos }: TodoProps) {
                     {isLoadingTodos ? (
                         <div className="space-y-2">
                             <TodoCardSkeleton />
-                            <TodoCardSkeleton />
-                            <TodoCardSkeleton />
-                            <TodoCardSkeleton />
                         </div>
                     ) : todos && todos.length > 0 ? (
                         todos.map((todo) => (
