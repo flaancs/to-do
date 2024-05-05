@@ -22,7 +22,7 @@ export const forgot = publicProcedure
             const user = await db.user.findFirst({
                 where: {
                     email,
-                    hashedPassword: {
+                    password: {
                         not: null,
                     },
                 },

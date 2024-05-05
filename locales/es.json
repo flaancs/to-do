@@ -23,6 +23,7 @@
         "error": "Ocurrió un error",
         "goToHome": "Ir al inicio",
         "withGoogle": "con Google",
+        "withGithub": "con GitHub",
         "required": "Requerido"
     },
     "fields": {
@@ -63,6 +64,10 @@
         "forgot": "¿Olvidaste tu contraseña?",
         "submit": "Iniciar sesión",
         "notifications": {
+            "notCreated": {
+                "title": "Cuenta no encontrada",
+                "message": "No existe una cuenta con ese correo electrónico. Por favor, regístrate."
+            },
             "error": {
                 "title": "Correo electrónico o contraseña inválidos",
                 "message": "Por favor, verifica tu correo y contraseña e intenta de nuevo."
@@ -74,7 +79,13 @@
         "description": "Ingresa tu información para crear una cuenta",
         "login": "¿Ya tienes una cuenta? Inicia sesión",
         "submit": "Registrarse",
-        "goLogin": "Ir a iniciar sesión"
+        "goLogin": "Ir a iniciar sesión",
+        "notifications": {
+            "success": {
+                "title": "Cuenta creada",
+                "message": "Tu cuenta ha sido creada exitosamente. Por favor, inicia sesión."
+            }
+        }
     },
     "forgot": {
         "title": "Recuperar Contraseña",

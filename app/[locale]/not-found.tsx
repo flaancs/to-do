@@ -1,10 +1,10 @@
 import { Button } from "@components/ui/button";
 import { UndoIcon } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
-export default async function NotFound() {
-    const t = await getTranslations();
+export default function NotFound() {
+    const t = useTranslations();
 
     return (
         <div className="flex h-screen flex-col items-center justify-center">

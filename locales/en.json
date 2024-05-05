@@ -23,6 +23,7 @@
         "error": "An error occurred",
         "goToHome": "Go to home",
         "withGoogle": "with Google",
+        "withGithub": "with GitHub",
         "required": "Required"
     },
     "fields": {
@@ -63,6 +64,10 @@
         "forgot": "Forgot your password?",
         "submit": "Sign in",
         "notifications": {
+            "notCreated": {
+                "title": "Account not found",
+                "message": "An account with that email does not exist. Please sign up."
+            },
             "error": {
                 "title": "Invalid email or password",
                 "message": "Please check your email and password and try again."
@@ -74,7 +79,13 @@
         "description": "Enter your information to create an account",
         "login": "Already have an account? Log in",
         "submit": "Sign up",
-        "goLogin": "Go to login"
+        "goLogin": "Go to login",
+        "notifications": {
+            "success": {
+                "title": "Account created",
+                "message": "Your account has been created successfully"
+            }
+        }
     },
     "forgot": {
         "title": "Forgot Password",

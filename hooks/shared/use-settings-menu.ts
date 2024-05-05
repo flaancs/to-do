@@ -1,25 +1,21 @@
-import { useUser } from "@context/user-context";
+import { useSession } from "next-auth/react";
 import { useLocale } from "next-intl";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export const useSettingsMenu = () => {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const currentLocale = useLocale();
-    const { user, logout, reloadUser } = useUser();
     const { resolvedTheme, setTheme, theme } = useTheme();
     const [userDialogOpen, setUserDialogOpen] = useState(false);
     const [value, setValue] = useState<string>(theme ?? "system");
     const [locale, setLocale] = useState(currentLocale);
+    const { data: session } = useSession();
 
-    const handleUserUpdated = () => {
-        if (!user) return;
-        reloadUser();
-        setUserDialogOpen(false);
-    };
+    const user = useMemo(() => session?.user || null, [session]);
 
     const handleChangeLocale = (value: string) => {
         setLocale(value);
@@ -28,7 +24,6 @@ export const useSettingsMenu = () => {
 
     return {
         user,
-        logout,
         resolvedTheme,
         setTheme,
         theme,
@@ -38,7 +33,6 @@ export const useSettingsMenu = () => {
         setValue,
         locale,
         setLocale,
-        handleUserUpdated,
         handleChangeLocale,
     };
 };

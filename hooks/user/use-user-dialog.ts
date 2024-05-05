@@ -1,18 +1,16 @@
 import { useToast } from "@components/ui/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { apiClient } from "@lib/api-client";
-import { ApiOutput } from "@packages/api";
+import { handleRedirect } from "@lib/utils";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
 
-export interface useUserDialogProps {
-    user: ApiOutput["auth"]["user"];
-    onUserUpdated: () => void;
-}
-
-export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
+export const useUserDialog = () => {
     const t = useTranslations();
+    const { data: session } = useSession();
     const { toast } = useToast();
 
     const updateUserMutation = apiClient.auth.update.useMutation({
@@ -21,7 +19,7 @@ export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
                 title: t("user.update.notifications.success.title"),
                 description: t("user.update.notifications.success.message"),
             });
-            onUserUpdated();
+            handleRedirect("/");
         },
         onError: (error) => {
             toast({
@@ -31,7 +29,7 @@ export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
         },
     });
 
-    const UpdateUserSchema = useMemo(
+    const updateUserSchema = useMemo(
         () =>
             z
                 .object({
@@ -45,12 +43,14 @@ export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
                         .string()
                         .min(8, t("fields.password.minLength"))
                         .max(255, t("fields.password.maxLength"))
-                        .optional(),
+                        .optional()
+                        .or(z.literal("")),
                     passwordConfirm: z
                         .string()
                         .min(8, t("fields.password.minLength"))
                         .max(255, t("fields.password.maxLength"))
-                        .optional(),
+                        .optional()
+                        .or(z.literal("")),
                 })
                 .refine((data) => data.password === data.passwordConfirm, {
                     message: t("fields.passwordConfirm.mismatch"),
@@ -59,29 +59,44 @@ export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
         [t],
     );
 
-    const updateUserFormValidationSchema = useMemo(
-        () => toFormikValidationSchema(UpdateUserSchema),
-        [UpdateUserSchema],
-    );
+    const user = useMemo(() => session?.user || null, [session]);
 
-    const handleSubmit = async (values: {
-        name: string;
-        password: string;
-        passwordConfirm: string;
+    useEffect(() => {
+        if (user) {
+            setValue("name", user.name || "");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
+
+    type FormValues = z.infer<typeof updateUserSchema>;
+
+    const {
+        setValue,
+        handleSubmit,
+        register,
+        formState: { isSubmitting, errors, touchedFields },
+    } = useForm<FormValues>({
+        resolver: zodResolver(updateUserSchema),
+    });
+
+    const onSubmit: SubmitHandler<FormValues> = async ({
+        name,
+        password,
+        passwordConfirm,
     }) => {
-        if (!user) return;
         await updateUserMutation.mutateAsync({
-            id: user.id,
-            name: values.name,
-            password: values.password,
-            passwordConfirmation: values.passwordConfirm,
+            name: name,
+            password: password,
+            passwordConfirmation: passwordConfirm,
         });
     };
 
     return {
-        user,
         handleSubmit,
-        updateUserMutation,
-        updateUserFormValidationSchema,
+        register,
+        onSubmit,
+        isSubmitting,
+        errors,
+        touchedFields,
     };
 };

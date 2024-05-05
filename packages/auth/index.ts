@@ -1,3 +1,3 @@
-export * from "./lib/lucia";
-export * from "./lib/password";
-export * from "./oauth/google";
+export * from "./lib/auth";
+export * from "./lib/auth.config";
+

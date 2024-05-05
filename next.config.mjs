@@ -9,7 +9,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "lh3.googleusercontent.com",
+                hostname: "**",
             },
         ],
     },
@@ -21,10 +21,6 @@ const nextConfig = {
                 permanent: true,
             },
         ];
-    },
-    webpack: (config) => {
-        config.externals.push("@node-rs/argon2", "@node-rs/bcrypt");
-        return config;
     },
 };
 

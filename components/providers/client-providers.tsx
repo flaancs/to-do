@@ -1,19 +1,18 @@
+"use client";
 import { ApiClientProvider } from "@components/providers/api-client";
 import { TooltipProvider } from "@components/ui/tooltip";
-import { UserContextProvider } from "@context/user-context";
-import { ApiOutput } from "@packages/api";
+import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "../ui/toaster";
 
 export interface ClientProviderProps {
-    user: ApiOutput["auth"]["user"] | null;
     children: React.ReactNode;
 }
 
-export function ClientProviders({ user, children }: ClientProviderProps) {
+export function ClientProviders({ children }: ClientProviderProps) {
     return (
         <ApiClientProvider>
-            <UserContextProvider initialUser={user}>
+            <SessionProvider>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
@@ -22,7 +21,7 @@ export function ClientProviders({ user, children }: ClientProviderProps) {
                     <TooltipProvider>{children}</TooltipProvider>
                     <Toaster />
                 </ThemeProvider>
-            </UserContextProvider>
+            </SessionProvider>
         </ApiClientProvider>
     );
 }

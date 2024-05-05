@@ -1,18 +1,16 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { apiClient } from "@lib/api-client";
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
 
 export const useForgot = () => {
     const t = useTranslations();
-    const [sent, setSent] = useState(false);
 
-    const forgotPasswordMutation = apiClient.auth.forgot.useMutation({
-        onSettled: () => setSent(true),
-    });
+    const forgotPasswordMutation = apiClient.auth.forgot.useMutation();
 
-    const ForgotPasswordSchema = useMemo(
+    const forgotPasswordSchema = useMemo(
         () =>
             z.object({
                 email: z
@@ -25,28 +23,29 @@ export const useForgot = () => {
         [t],
     );
 
-    const forgotPasswordFormValidationSchema = useMemo(
-        () => toFormikValidationSchema(ForgotPasswordSchema),
-        [ForgotPasswordSchema],
-    );
+    type FormValues = z.infer<typeof forgotPasswordSchema>;
 
-    const handleSubmit = async (values: { email: string }) => {
+    const {
+        handleSubmit,
+        register,
+        formState: { isSubmitting, isSubmitSuccessful, errors, touchedFields },
+    } = useForm<FormValues>({
+        resolver: zodResolver(forgotPasswordSchema),
+    });
+
+    const onSubmit: SubmitHandler<FormValues> = async ({ email }) => {
         await forgotPasswordMutation.mutateAsync({
-            email: values.email,
+            email: email,
         });
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            handleSubmit({ email: event.currentTarget.value });
-        }
-    };
-
     return {
-        sent,
+        isSubmitSuccessful,
         handleSubmit,
-        handleKeyDown,
-        forgotPasswordMutation,
-        forgotPasswordFormValidationSchema,
+        register,
+        onSubmit,
+        isSubmitting,
+        errors,
+        touchedFields,
     };
 };

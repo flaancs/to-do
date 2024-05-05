@@ -4,15 +4,17 @@ import { Label } from "@components/shared/label";
 import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { useRecovery } from "@hooks/recovery/use-recovery";
-import { Form, Formik } from "formik";
 import { useTranslations } from "next-intl";
 
 export default function Recovery() {
     const t = useTranslations();
     const {
         handleSubmit,
-        setPasswordMutation,
-        recoveryPasswordFormValidationSchema,
+        register,
+        onSubmit,
+        isSubmitting,
+        errors,
+        touchedFields,
     } = useRecovery();
 
     return (
@@ -23,71 +25,52 @@ export default function Recovery() {
                     {t("recovery.description")}
                 </p>
             </div>
-            <Formik
-                initialValues={{
-                    password: "",
-                    passwordConfirm: "",
-                }}
-                validationSchema={recoveryPasswordFormValidationSchema}
-                onSubmit={handleSubmit}
-            >
-                {({ handleChange, values, errors, touched }) => (
-                    <Form className="space-y-4">
-                        <div className="space-y-2">
-                            <Label
-                                title={t("fields.password.label")}
-                                required
-                                requiredText={t("fields.password.required")}
-                                htmlFor="password"
-                            />
-                            <Input
-                                id="password"
-                                placeholder={t("fields.password.placeholder")}
-                                name="password"
-                                onChange={handleChange}
-                                value={values.password}
-                                type="password"
-                            />
-                            <FieldError
-                                error={errors.password}
-                                touched={touched.password}
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <Label
-                                title={t("fields.passwordConfirm.label")}
-                                required
-                                requiredText={t(
-                                    "fields.passwordConfirm.required",
-                                )}
-                                htmlFor="password"
-                            />
-                            <Input
-                                id="passwordConfirm"
-                                name="passwordConfirm"
-                                placeholder={t(
-                                    "fields.passwordConfirm.placeholder",
-                                )}
-                                onChange={handleChange}
-                                value={values.passwordConfirm}
-                                type="password"
-                            />
-                            <FieldError
-                                error={errors.passwordConfirm}
-                                touched={touched.passwordConfirm}
-                            />
-                        </div>
-                        <Button
-                            className="w-full"
-                            type="submit"
-                            loading={setPasswordMutation.isPending}
-                            disabled={setPasswordMutation.isPending}
-                        >
-                            {t("recovery.submit")}
-                        </Button>
-                    </Form>
-                )}
-            </Formik>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <div className="space-y-2">
+                    <Label
+                        title={t("fields.password.label")}
+                        required
+                        requiredText={t("fields.password.required")}
+                        htmlFor="password"
+                    />
+                    <Input
+                        id="password"
+                        placeholder={t("fields.password.placeholder")}
+                        type="password"
+                        {...register("password")}
+                    />
+                    <FieldError
+                        error={errors.password?.message}
+                        touched={touchedFields.password}
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label
+                        title={t("fields.passwordConfirm.label")}
+                        required
+                        requiredText={t("fields.passwordConfirm.required")}
+                        htmlFor="password"
+                    />
+                    <Input
+                        id="passwordConfirm"
+                        placeholder={t("fields.passwordConfirm.placeholder")}
+                        type="password"
+                        {...register("passwordConfirm")}
+                    />
+                    <FieldError
+                        error={errors.passwordConfirm?.message}
+                        touched={touchedFields.passwordConfirm}
+                    />
+                </div>
+                <Button
+                    className="w-full"
+                    type="submit"
+                    loading={isSubmitting}
+                    disabled={isSubmitting}
+                >
+                    {t("recovery.submit")}
+                </Button>
+            </form>
         </div>
     );
 }

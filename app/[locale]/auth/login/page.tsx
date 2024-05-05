@@ -1,5 +1,5 @@
 import { LoginForm } from "@components/login/login-form";
-import { GoogleButton } from "@components/shared/google-button";
+import { SocialButtons } from "@components/shared/social-buttons";
 import { Separator } from "@components/ui/separator";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
@@ -24,7 +24,7 @@ export default async function Login() {
                 </Link>
             </div>
             <Separator className="my-8" />
-            <GoogleButton action={t("login.submit")} />
+            <SocialButtons action={t("login.submit")} />
         </div>
     );
 }

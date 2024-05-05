@@ -1,9 +1,8 @@
 import { ClientProviders } from "@components/providers/client-providers";
+import { DashboardMenu } from "@components/shared/dashboard-menu";
 import { Footer } from "@components/shared/footer";
 import { Logo } from "@components/shared/logo";
-import { SettingsMenu } from "@components/shared/settings-menu";
 import { cn } from "@lib/utils";
-import { createApiCaller } from "@packages/api";
 import { NextIntlClientProvider, useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Inter as FontSans } from "next/font/google";
@@ -32,9 +31,6 @@ export default async function RootLayout({
     children: React.ReactNode;
     params: { locale: string };
 }>) {
-    const apiCaller = await createApiCaller();
-    const user = await apiCaller.auth.user();
-
     const locale = useLocale();
 
     if (params.locale !== locale) notFound();
@@ -51,10 +47,10 @@ export default async function RootLayout({
             >
                 <NextTopLoader />
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <ClientProviders user={user}>
+                    <ClientProviders>
                         <nav className="absolute left-0 top-0 flex w-full justify-between px-8 py-4">
                             <Logo />
-                            <SettingsMenu />
+                            <DashboardMenu />
                         </nav>
                         <main className="mx-auto flex min-h-screen flex-col justify-center">
                             {children}

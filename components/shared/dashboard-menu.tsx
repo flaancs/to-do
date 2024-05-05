@@ -23,17 +23,17 @@ import {
     SunIcon,
     UserIcon,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useIsClient } from "usehooks-ts";
 import { UserDialog } from "./user-dialog";
 import BlankUser from "/public/blank-user.jpeg";
 
-export function SettingsMenu() {
+export function DashboardMenu() {
     const t = useTranslations();
     const {
         user,
-        logout,
         resolvedTheme,
         setTheme,
         userDialogOpen,
@@ -41,7 +41,6 @@ export function SettingsMenu() {
         value,
         setValue,
         locale,
-        handleUserUpdated,
         handleChangeLocale,
     } = useSettingsMenu();
     const isClient = useIsClient();
@@ -51,12 +50,10 @@ export function SettingsMenu() {
     }
 
     return (
-        <>
+        <div>
             <UserDialog
                 open={userDialogOpen}
                 onOpenChange={setUserDialogOpen}
-                user={user}
-                onUserUpdated={handleUserUpdated}
             />
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -70,8 +67,8 @@ export function SettingsMenu() {
                             <DropdownMenuLabel>
                                 <div className="flex gap-2 items-center">
                                     <Image
-                                        src={user.avatarUrl || BlankUser}
-                                        alt={user.name}
+                                        src={user.image || BlankUser}
+                                        alt={user.name || "User"}
                                         width={35}
                                         height={35}
                                         className="rounded-full"
@@ -147,14 +144,24 @@ export function SettingsMenu() {
                                 <UserIcon className="mr-2 h-4 w-4" />
                                 {t("user.update.title")}
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={logout}>
-                                <LogOutIcon className="mr-2 h-4 w-4" />
-                                {t("user.logout")}
+                            <DropdownMenuItem asChild>
+                                <button
+                                    type="submit"
+                                    className="w-full"
+                                    onClick={() =>
+                                        signOut({
+                                            callbackUrl: "/auth/login",
+                                        })
+                                    }
+                                >
+                                    <LogOutIcon className="mr-2 h-4 w-4" />
+                                    {t("user.logout")}
+                                </button>
                             </DropdownMenuItem>
                         </>
                     )}
                 </DropdownMenuContent>
             </DropdownMenu>
-        </>
+        </div>
     );
 }

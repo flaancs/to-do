@@ -1,18 +1,23 @@
 import { useToast } from "@components/ui/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { apiClient } from "@lib/api-client";
 import { handleRedirect } from "@lib/utils";
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
 
 export const useSignup = () => {
     const t = useTranslations();
     const { toast } = useToast();
 
     const signupMutation = apiClient.auth.signup.useMutation({
-        onSuccess: () => {
-            handleRedirect("/todos");
+        onSuccess: ({ result }) => {
+            toast({
+                title: t("signup.notifications.success.title"),
+                description: t("signup.notifications.success.message"),
+            });
+            handleRedirect(`/auth/login?email=${result}`);
         },
         onError: (error) => {
             toast({
@@ -22,7 +27,7 @@ export const useSignup = () => {
         },
     });
 
-    const SignupSchema = useMemo(
+    const signupSchema = useMemo(
         () =>
             z
                 .object({
@@ -58,28 +63,36 @@ export const useSignup = () => {
         [t],
     );
 
-    const signupFormSchema = useMemo(
-        () => toFormikValidationSchema(SignupSchema),
-        [SignupSchema],
-    );
+    type FormValues = z.infer<typeof signupSchema>;
 
-    const handleSubmit = async (values: {
-        email: string;
-        name: string;
-        password: string;
-        passwordConfirm: string;
+    const {
+        handleSubmit,
+        register,
+        formState: { isSubmitting, errors, touchedFields },
+    } = useForm<FormValues>({
+        resolver: zodResolver(signupSchema),
+    });
+
+    const onSubmit: SubmitHandler<FormValues> = async ({
+        email,
+        name,
+        password,
+        passwordConfirm,
     }) => {
         await signupMutation.mutateAsync({
-            email: values.email,
-            name: values.name,
-            password: values.password,
-            passwordConfirm: values.passwordConfirm,
+            email: email,
+            name: name,
+            password: password,
+            passwordConfirm: passwordConfirm,
         });
     };
 
     return {
         handleSubmit,
-        signupMutation,
-        signupFormSchema,
+        register,
+        onSubmit,
+        isSubmitting,
+        errors,
+        touchedFields,
     };
 };

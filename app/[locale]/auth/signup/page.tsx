@@ -1,4 +1,4 @@
-import { GoogleButton } from "@components/shared/google-button";
+import { SocialButtons } from "@components/shared/social-buttons";
 import { SignupForm } from "@components/signup/signup-form";
 import { Separator } from "@components/ui/separator";
 import { getTranslations } from "next-intl/server";
@@ -25,7 +25,7 @@ export default async function Signup() {
             </div>
             <Separator className="my-8" />
             <div className="space-y-4">
-                <GoogleButton action={t("signup.title")} />
+                <SocialButtons action={t("signup.title")} />
             </div>
         </div>
     );

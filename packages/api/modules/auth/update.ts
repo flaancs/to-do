@@ -1,42 +1,24 @@
-import { hashPassword } from "@packages/auth";
-import { UserSchema, db } from "@packages/db";
+import { db } from "@packages/db";
 import { TRPCError } from "@trpc/server";
+import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { protectedProcedure } from "../../trpc/base";
 
 export const update = protectedProcedure
     .input(
         z.object({
-            id: z.string(),
             name: z.string().optional(),
             password: z.string().optional(),
             passwordConfirmation: z.string().optional(),
         }),
     )
-    .output(
-        UserSchema.pick({
-            id: true,
-            email: true,
-            name: true,
-            avatarUrl: true,
-        }).partial({
-            avatarUrl: true,
-        }),
-    )
+    .output(z.void())
     .mutation(
         async ({
-            input: { id, name, password, passwordConfirmation },
+            input: { name, password, passwordConfirmation },
             ctx: { user },
         }) => {
             try {
-                if (id !== user.id) {
-                    throw new TRPCError({
-                        code: "FORBIDDEN",
-                        message:
-                            "You are not authorized to perform this action.",
-                    });
-                }
-
                 if (password && password !== passwordConfirmation) {
                     throw new TRPCError({
                         code: "BAD_REQUEST",
@@ -44,19 +26,22 @@ export const update = protectedProcedure
                     });
                 }
 
-                const updatedUser = await db.user.update({
+                let hashedPassword;
+                if (password) {
+                    hashedPassword = await bcrypt.hash(password, 10);
+                }
+
+                await db.user.update({
                     where: {
-                        id,
+                        id: user.id,
                     },
                     data: {
                         name,
                         ...(password && {
-                            hashedPassword: await hashPassword(password),
+                            password: hashedPassword,
                         }),
                     },
                 });
-
-                return updatedUser;
             } catch (error: any) {
                 console.error(error);
                 throw new TRPCError({

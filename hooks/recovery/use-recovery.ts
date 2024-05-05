@@ -1,11 +1,12 @@
 import { useToast } from "@components/ui/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { apiClient } from "@lib/api-client";
 import { handleRedirect } from "@lib/utils";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { toFormikValidationSchema } from "zod-formik-adapter";
 
 export const useRecovery = () => {
     const t = useTranslations();
@@ -18,7 +19,7 @@ export const useRecovery = () => {
                 title: t("recovery.notifications.success.title"),
                 description: t("recovery.notifications.success.message"),
             });
-            handleRedirect("/todos");
+            handleRedirect("/auth/login");
         },
         onError: (error) => {
             toast({
@@ -28,7 +29,7 @@ export const useRecovery = () => {
         },
     });
 
-    const RecoveryPasswordSchema = useMemo(
+    const recoveryPasswordSchema = useMemo(
         () =>
             z
                 .object({
@@ -54,26 +55,34 @@ export const useRecovery = () => {
         [t],
     );
 
-    const recoveryPasswordFormValidationSchema = useMemo(
-        () => toFormikValidationSchema(RecoveryPasswordSchema),
-        [RecoveryPasswordSchema],
-    );
+    type FormValues = z.infer<typeof recoveryPasswordSchema>;
 
-    const handleSubmit = async (values: {
-        password: string;
-        passwordConfirm: string;
+    const {
+        handleSubmit,
+        register,
+        formState: { isSubmitting, errors, touchedFields },
+    } = useForm<FormValues>({
+        resolver: zodResolver(recoveryPasswordSchema),
+    });
+
+    const onSubmit: SubmitHandler<FormValues> = async ({
+        password,
+        passwordConfirm,
     }) => {
         const token = searchParams.get("token") as string;
         await setPasswordMutation.mutateAsync({
             token,
-            password: values.password,
-            passwordConfirm: values.passwordConfirm,
+            password: password,
+            passwordConfirm: passwordConfirm,
         });
     };
 
     return {
         handleSubmit,
-        setPasswordMutation,
-        recoveryPasswordFormValidationSchema,
+        register,
+        onSubmit,
+        isSubmitting,
+        errors,
+        touchedFields,
     };
 };
