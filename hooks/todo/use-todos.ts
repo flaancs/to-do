@@ -15,7 +15,7 @@ export const useTodos = () => {
             utils.todos.findAll.refetch();
             toast({
                 title: "An error occurred",
-                description: "An error occurred while deleting the todo",
+                description: "An error occurred while deleting the todo please try again.",
             });
         },
         onMutate: async (deletedTodo) => {

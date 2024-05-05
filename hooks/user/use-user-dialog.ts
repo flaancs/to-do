@@ -36,7 +36,7 @@ export const useUserDialog = ({ user, onUserUpdated }: useUserDialogProps) => {
         },
         onError: (error) => {
             toast({
-                title: "Error",
+                title: "An error occurred",
                 description: error.message,
             });
         },

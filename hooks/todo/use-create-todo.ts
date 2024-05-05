@@ -25,7 +25,7 @@ export const useCreateTodo = () => {
             utils.todos.findAll.refetch();
             toast({
                 title: "An error occurred",
-                description: "An error occurred while creating the todo",
+                description: "Failed to create todo please try again",
             });
         },
         onMutate: async (newTodo) => {

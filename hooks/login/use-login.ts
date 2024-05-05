@@ -27,7 +27,8 @@ export const useLogin = () => {
         },
         onError: () => {
             toast({
-                title: "Invalid email or password",
+                title: "Invalid credentials",
+                description: "Please check your credentials and try again",
             });
         },
     });

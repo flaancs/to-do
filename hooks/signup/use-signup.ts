@@ -47,7 +47,7 @@ export const useSignup = () => {
         },
         onError: (error) => {
             toast({
-                title: "An error occurred when signing up",
+                title: "An error occurred",
                 description: error.message,
             });
         },

@@ -36,13 +36,14 @@ export const useRecovery = () => {
     const setPasswordMutation = apiClient.auth.setPassword.useMutation({
         onSuccess: () => {
             toast({
-                title: "Your password has been updated successfully",
+                title: "Password updated",
+                description: "Your password has been updated successfully"
             });
             handleRedirect("/todos");
         },
         onError: (error) => {
             toast({
-                title: "An error occurred while updating your password",
+                title: "An error occurred",
                 description: error.message,
             });
         },

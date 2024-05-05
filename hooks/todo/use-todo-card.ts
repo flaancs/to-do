@@ -19,7 +19,7 @@ export const useTodoCard = ({ todo }: useTodoCardProps) => {
             utils.todos.findAll.refetch();
             toast({
                 title: "An error occurred",
-                description: "An error occurred while updating the todo",
+                description: "An error occurred while updating the todo please try again.",
             });
         },
         onMutate: async (updatedTodo) => {
