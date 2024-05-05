@@ -4,7 +4,7 @@ import { Skeleton } from "../ui/skeleton";
 
 export function TodoCardSkeleton() {
     return (
-        <Skeleton className="w-full h-10">
+        <Skeleton className="w-full h-9">
             <div className="w-full h-full flex items-center justify-between px-2">
                 <Checkbox disabled />
                 <button disabled className="opacity-50">
