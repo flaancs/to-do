@@ -19,7 +19,11 @@ export function LoginForm() {
     } = useLogin();
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form
+            data-testid="login-form"
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4"
+        >
             <div className="space-y-2">
                 <Label
                     title={t("fields.email.label")}
@@ -58,6 +62,7 @@ export function LoginForm() {
             </div>
             <div className="flex justify-end">
                 <Link
+                    data-testid="login-forgot-link"
                     href="/auth/forgot"
                     className="text-sm underline-offset-2 hover:underline"
                 >

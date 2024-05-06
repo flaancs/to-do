@@ -9,14 +9,20 @@ export default async function Login() {
     return (
         <div className="mx-auto w-full max-w-sm space-y-6">
             <div className="space-y-2 text-center">
-                <h1 className="text-3xl font-bold">{t("login.title")}</h1>
-                <p className="text-gray-500 dark:text-gray-400">
+                <h1 className="text-3xl font-bold" data-testid="login-title">
+                    {t("login.title")}
+                </h1>
+                <p
+                    className="text-gray-500 dark:text-gray-400"
+                    data-testid="login-description"
+                >
                     {t("login.description")}
                 </p>
             </div>
             <LoginForm />
             <div className="mt-2">
                 <Link
+                    data-testid="login-signup-link"
                     href="/auth/signup"
                     className="text-sm underline-offset-2 hover:underline"
                 >

@@ -23,10 +23,14 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-#### Running tests
+#### Running e2e tests
 
 ```bash
-pnpm test
+pnpm cypress:open
+```
+
+```bash
+pnpm cypress:run
 ```
 
 ## Managing the database

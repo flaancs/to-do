@@ -8,6 +8,7 @@ export function Footer() {
         <footer className="sticky bottom-4">
             <div className="flex w-full items-center justify-center">
                 <Link
+                    data-testid="footer-github-link"
                     className="flex items-center gap-2 pb-2 pt-8 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
                     href="https://github.com/flaancs/to-do"
                     target="_blank"

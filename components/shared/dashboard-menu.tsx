@@ -50,7 +50,7 @@ export function DashboardMenu() {
     }
 
     return (
-        <div>
+        <div data-testid="dashboard-menu">
             <UserDialog
                 open={userDialogOpen}
                 onOpenChange={setUserDialogOpen}
@@ -85,7 +85,7 @@ export function DashboardMenu() {
                         </>
                     )}
                     <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger data-testid="dashboard-menu-language-trigger">
                             <LanguagesIcon className="mr-2 h-4 w-4" />
                             {t("site.language")}
                         </DropdownMenuSubTrigger>
@@ -94,6 +94,7 @@ export function DashboardMenu() {
                                 <DropdownMenuRadioGroup
                                     value={locale}
                                     onValueChange={handleChangeLocale}
+                                    data-testid="dashboard-menu-language-content"
                                 >
                                     <DropdownMenuRadioItem value="en">
                                         English
@@ -106,7 +107,7 @@ export function DashboardMenu() {
                         </DropdownMenuPortal>
                     </DropdownMenuSub>
                     <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger data-testid="dashboard-menu-theme-trigger">
                             {resolvedTheme === "light" ? (
                                 <MoonIcon className="mr-2 h-4 w-4" />
                             ) : (
@@ -118,6 +119,7 @@ export function DashboardMenu() {
                             <DropdownMenuSubContent>
                                 <DropdownMenuRadioGroup
                                     value={value}
+                                    data-testid="dashboard-menu-theme-content"
                                     onValueChange={(value) => {
                                         setTheme(value);
                                         setValue(value);
@@ -129,6 +131,7 @@ export function DashboardMenu() {
                                     <DropdownMenuRadioItem value="dark">
                                         {t("theme.dark")}
                                     </DropdownMenuRadioItem>
+                                    …
                                     <DropdownMenuRadioItem value="system">
                                         {t("theme.system")}
                                     </DropdownMenuRadioItem>

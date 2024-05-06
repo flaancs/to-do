@@ -12,7 +12,7 @@ export function SocialButtons({ action }: SocialButtonsProps) {
     const t = useTranslations();
 
     return (
-        <div className="flex flex-col gap-2 justify-center">
+        <div data-testid="login-social-buttons" className="flex flex-col gap-2 justify-center">
             <Button
                 onClick={() =>
                     signIn("github", {

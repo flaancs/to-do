@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function Logo() {
     return (
-        <Link href="/">
+        <Link href="/" data-testid="logo">
             <div className="flex items-center gap-2">
                 <CheckSquareIcon size={24} />
                 <h1 className="text-2xl font-bold">

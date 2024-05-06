@@ -27,19 +27,25 @@ export default function Forgot() {
                     <SendIcon className="w-16 h-16 mx-auto" />
                 ) : (
                     <>
-                        <h1 className="text-3xl font-bold">
+                        <h1
+                            className="text-3xl font-bold"
+                            data-testid="forgot-title"
+                        >
                             {t("forgot.title")}
                         </h1>
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <p
+                            className="text-gray-500 dark:text-gray-400"
+                            data-testid="forgot-description"
+                        >
                             {t("forgot.description")}
                         </p>
                     </>
                 )}
             </div>
             {isSubmitSuccessful ? (
-                <p className="text-center">{t("forgot.sent")}</p>
+                <p data-testid="forgot-sent-message" className="text-center">{t("forgot.sent")}</p>
             ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-testid="forgot-form">
                     <div className="space-y-2">
                         <Label
                             required
@@ -67,13 +73,13 @@ export default function Forgot() {
                         {t("forgot.submit")}
                     </Button>
                     <div className="flex justify-center my-1">
-                        <Link href="/auth/login">{t("signup.goLogin")}</Link>
+                        <Link data-testid="forgot-login-link" href="/auth/login">{t("signup.goLogin")}</Link>
                     </div>
                 </form>
             )}
             {isSubmitSuccessful && (
                 <div className="flex justify-center">
-                    <Button asChild className="mt-4">
+                    <Button asChild className="mt-4" data-testid="forgot-login-button">
                         <Link href="/auth/login">
                             <UndoIcon className="mr-2 h-4 w-4" />{" "}
                             {t("signup.goLogin")}
