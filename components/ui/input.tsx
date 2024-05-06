@@ -40,6 +40,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                         </TooltipContent>
                         <TooltipTrigger asChild>
                             <button
+                                data-testid="toggle-password-visibility"
                                 type="button"
                                 className="absolute top-2.5 right-2.5"
                                 onClick={() =>

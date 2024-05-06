@@ -3,14 +3,13 @@
 import { Button } from "@components/ui/button";
 import { useTodos } from "@hooks/todo/use-todos";
 import type { Todos } from "@lib/types";
-import { InfoIcon } from "lucide-react";
+import { InfoIcon, LoaderIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "../ui/separator";
 import { CreateTodo } from "./create-todo";
 import { DeleteCompletedTodos } from "./delete-completed-todos-alert";
 import { DeleteTodoAlert } from "./delete-todo-alert";
 import { TodoCard } from "./todo-card";
-import { TodoCardSkeleton } from "./todo-card-skeleton";
 
 export interface TodoProps {
     todos: Todos;
@@ -44,7 +43,10 @@ export function Todos({ todos, isLoadingTodos }: TodoProps) {
             />
             <div className="w-full space-y-2">
                 <div>
-                    <h2 className="mb-2 text-xl font-bold">
+                    <h2
+                        className="mb-2 text-xl font-bold"
+                        data-testid="todos-title"
+                    >
                         {t("todos.create.title")}
                     </h2>
                     <CreateTodo />
@@ -52,8 +54,11 @@ export function Todos({ todos, isLoadingTodos }: TodoProps) {
                 </div>
                 <div className="max-h-96 space-y-2 overflow-y-scroll">
                     {isLoadingTodos ? (
-                        <div className="space-y-2">
-                            <TodoCardSkeleton />
+                        <div className="flex items-center justify-center py-2">
+                            <LoaderIcon
+                                className="w-4 h-4 animate-spin text-primary"
+                                data-testid="todos-spinner"
+                            />
                         </div>
                     ) : todos && todos.length > 0 ? (
                         todos.map((todo) => (
@@ -82,6 +87,7 @@ export function Todos({ todos, isLoadingTodos }: TodoProps) {
                     todos.filter((todo) => todo.completed).length > 0 && (
                         <div className="flex justify-center">
                             <Button
+                                data-testid="todos-delete-completed-button"
                                 disabled={
                                     deleteAllCompletedTodosMutation.isPending
                                 }

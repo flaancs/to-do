@@ -18,7 +18,7 @@ export function SignupForm() {
     } = useSignup();
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-testid="signup-form">
             <div className="space-y-2">
                 <Label
                     title={t("fields.email.label")}

@@ -3,15 +3,15 @@ describe("Layout", () => {
         cy.visit("/");
     });
 
-    it("render dashboard menu", () => {
+    it("should render dashboard menu", () => {
         cy.get("[data-testid=dashboard-menu]").should("be.visible");
     });
 
-    it("render logo", () => {
+    it("should render logo", () => {
         cy.get("[data-testid=logo]").should("be.visible");
     });
 
-    it("render language and theme toggle when clicking menu", () => {
+    it("should render language and theme toggle when clicking menu", () => {
         cy.get("[data-testid=dashboard-menu]").click();
         cy.get("[data-testid=dashboard-menu-language-trigger]").should(
             "be.visible",
@@ -21,7 +21,7 @@ describe("Layout", () => {
         );
     });
 
-    it("render language selector when clicking trigger", () => {
+    it("should render language selector when clicking trigger", () => {
         cy.get("[data-testid=dashboard-menu]").click();
         cy.get("[data-testid=dashboard-menu-language-trigger]").click();
         cy.get("[data-testid=dashboard-menu-language-content]").should(
@@ -35,7 +35,7 @@ describe("Layout", () => {
             .should("be.visible");
     });
 
-    it('should change language when clicking "Español"', () => {
+    it("should change language when clicking 'Español'", () => {
         cy.get("[data-testid=dashboard-menu]").click();
         cy.get("[data-testid=dashboard-menu-theme-trigger]").contains("Theme");
 
@@ -50,7 +50,7 @@ describe("Layout", () => {
         cy.get("[data-testid=dashboard-menu-theme-trigger]").contains("Tema");
     });
 
-    it("render theme selector when clicking trigger", () => {
+    it("should render theme selector when clicking trigger", () => {
         cy.get("[data-testid=dashboard-menu]").click();
         cy.get("[data-testid=dashboard-menu-theme-trigger]").click();
         cy.get("[data-testid=dashboard-menu-theme-content]").should(

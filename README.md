@@ -89,3 +89,4 @@ pnpm email
 -   [Plunk react email](https://docs.useplunk.com/guides/react-email)
 -   [Next Intl](https://next-intl-docs.vercel.app/docs/getting-started/app-router)
 -   [Sentry for Nextjs](https://docs.sentry.io/platforms/javascript/guides/nextjs/)
+-   [Testing with Cypress](https://nextjs.org/docs/pages/building-your-application/testing/cypress)

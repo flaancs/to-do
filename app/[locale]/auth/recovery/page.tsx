@@ -20,12 +20,12 @@ export default function Recovery() {
     return (
         <div className="mx-auto w-full max-w-sm space-y-6">
             <div className="space-y-2 text-center">
-                <h1 className="text-3xl font-bold">{t("recovery.title")}</h1>
-                <p className="text-gray-500 dark:text-gray-400">
+                <h1 className="text-3xl font-bold" data-testid="recovery-title">{t("recovery.title")}</h1>
+                <p className="text-gray-500 dark:text-gray-400" data-testid="recovery-description">
                     {t("recovery.description")}
                 </p>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-testid="recovery-form">
                 <div className="space-y-2">
                     <Label
                         title={t("fields.password.label")}

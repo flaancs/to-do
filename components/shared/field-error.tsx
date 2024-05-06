@@ -8,5 +8,9 @@ export function FieldError({ touched, error }: FieldErrorProps) {
         return null;
     }
 
-    return <span className="text-sm text-red-500">{error}</span>;
+    return (
+        <span data-testid="field-error" className="text-sm text-red-500">
+            {error}
+        </span>
+    );
 }

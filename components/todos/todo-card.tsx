@@ -22,6 +22,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
     return (
         <motion.div
             layout
+            data-testid="todo-card"
             className={cn(
                 "flex w-full items-center gap-2 px-2 border rounded-md",
                 {
@@ -30,6 +31,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
             )}
         >
             <Checkbox
+                data-testid="todo-checkbox"
                 id={todo.id}
                 defaultChecked={todo.completed}
                 onCheckedChange={(completed: boolean) =>
@@ -38,6 +40,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
                 disabled={isLoadingUpdate || todo.id === "created-todo"}
             />
             <Input
+                data-testid="todo-input"
                 name="title"
                 className={cn("border-0", {
                     "line-through": todo.completed,
@@ -55,6 +58,7 @@ export function TodoCard({ todo, onDelete }: TodoCardProps) {
                 <TooltipContent>{t("todos.delete.tooltip")}</TooltipContent>
                 <TooltipTrigger asChild>
                     <button
+                        data-testid="todo-delete-button"
                         className="disabled:cursor-not-allowed disabled:opacity-50"
                         onClick={() => onDelete(todo)}
                         disabled={todo.id === "created-todo"}

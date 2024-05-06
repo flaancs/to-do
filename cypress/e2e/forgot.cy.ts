@@ -1,14 +1,14 @@
-describe("Forgot password screen", () => {
+describe("Forgot", () => {
     beforeEach(() => {
         cy.visit("/auth/forgot");
     });
 
-    it("render forgot screen header correctly", () => {
+    it("should render header", () => {
         cy.get("[data-testid=forgot-title]").should("be.visible");
         cy.get("[data-testid=forgot-description]").should("be.visible");
     });
 
-    it("render forgot form correctly", () => {
+    it("should render form", () => {
         cy.get("[data-testid=forgot-form] input[name=email]").should(
             "be.visible",
         );
@@ -46,7 +46,7 @@ describe("Submit forgot form", () => {
         cy.get("[data-testid=forgot-login-button]").should("be.visible");
     });
 
-    it('should redirect to login page when clicking "Login" button', () => {
+    it("should redirect to login page when clicking 'Login' button", () => {
         cy.get("[data-testid=forgot-login-button]").click();
         cy.url().should("include", "/auth/login");
     });
